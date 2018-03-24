@@ -1,0 +1,5 @@
+	<h5>
+		<%=link_to question.name, question_path(question.id) %>
+		<span title="Кількість відповідей"><%= question.count %></span>
+		<%=question.user.nickname%>
+	</h5>
