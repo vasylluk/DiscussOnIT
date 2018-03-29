@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_answer, only:[:update,:destroy]
+	before_action :set_answer, only:[:update,:destroy,:positiv_vote,:negativ_vote]
 
 	def create
 		params[:answer][:user_id]=current_user.id

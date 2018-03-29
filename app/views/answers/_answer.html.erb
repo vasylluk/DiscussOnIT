@@ -1,0 +1,4 @@
+<p><%=answer.text%></p>
+<p><%=answer.user.email%></p>
+<p><%=answer.scores%> <%=link_to '+', positiv_vote_path(answer.id), method: :get%><%=link_to '-', negativ_vote_path(answer.id)%></p>
+ <p><%=link_to "Видалити", question_answer_path(answer.question.id,answer.id), method: :delete%></p> 
