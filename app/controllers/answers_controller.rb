@@ -8,9 +8,7 @@ class AnswersController < ApplicationController
 		@answer=Answer.create(answer_params)
 		if @answer.save
 			@question=Question.find(@answer.question_id)
-			c=@question.count
-			c+=1
-			@question.update(count :c)
+       		@question.update(count: @question.count+1)
 			redirect_to question_path(@answer.question.id)
 		else
 

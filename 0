@@ -1,2 +1,0 @@
-      invoke  active_record
-      remove    db/migrate/20180324170821_change_column.rb
