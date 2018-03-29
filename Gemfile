@@ -37,6 +37,8 @@ gem 'activeadmin'
 gem 'devise'
 #avatars
 gem "paperclip", "~> 6.0.0"
+#text edit
+gem 'tinymce-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

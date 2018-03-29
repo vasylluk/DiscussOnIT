@@ -11,7 +11,8 @@
 
 <div class="form-group">
 <%= f.label :text%>
-<%= f.text_area :text %>
+<%= text_area_tag :text, "", :class => "tinymce", :rows => 40, :cols => 120 %>
+<%= tinymce %>
 </div>
  
 <%= f.submit "Save"%>
