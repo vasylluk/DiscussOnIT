@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+    member do 
+      get :chosen
+    end
 
   resources :categories, only:[:index,:show]
 

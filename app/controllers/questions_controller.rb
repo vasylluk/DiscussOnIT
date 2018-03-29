@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 	before_action :authenticate_user!, except:[:index,:show]
-	before_action :set_question, only:[:show,:edit,:update,:destroy]
+	before_action :set_question, only:[:show,:edit,:update,:destroy, :chosen]
 
 	def index
 		@questions=Question.all
@@ -35,6 +35,16 @@ class QuestionsController < ApplicationController
 	def destroy
 		@question.destroy
 		redirect_to root_path
+	end
+
+	def chosen
+		@chosen=ChosenQuestion.where(question_id: @question.id).first
+		if @chosen == nil
+			@chosen.create(user_id: current_user.id,question_id: @question.id)
+		else
+		    @chosen.delete
+		end
+		redirect_to question_path(@question)
 	end
 
 	private
