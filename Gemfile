@@ -44,13 +44,18 @@ gem 'tinymce-rails'
 gem 'jquery-rails'
 
 gem 'bootstrap', '~> 4.0.0'
-
+#tests show
+gem 'simplecov', require: false, group: :test
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  #for tests
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
