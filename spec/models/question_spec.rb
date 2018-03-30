@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Product, type: :model do
+RSpec.describe Question, type: :model do
   subject{
 		build(:question, user: user)
 	}
@@ -9,4 +9,9 @@ RSpec.describe Product, type: :model do
    			expect(subject).to be_valid
    		end
 	end
+
+	describe "associations" do
+		it{ should have_one(:user_id).dependent(:destroy)}
+	end
+	
 end
