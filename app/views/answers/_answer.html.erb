@@ -1,4 +1,7 @@
 <p><%=answer.text%></p>
 <p><%=answer.user.email%></p>
-<p><%=answer.scores%> <%=link_to '+', positiv_vote_path(answer.id), method: :get%><%=link_to '-', negativ_vote_path(answer.id)%></p>
+<p><%=answer.score%> <%=link_to '+', positiv_vote_path(answer.id), method: :get%><%=link_to '-', negativ_vote_path(answer.id)%></p>
+<%=form_for :anscomment,  url:answer_anscomment_path(answer.id) do |f| %>
+	<%=render "anscomments/form", f:f%>
+<%end%>
  <p><%=link_to "Видалити", question_answer_path(answer.question.id,answer.id), method: :delete%></p> 

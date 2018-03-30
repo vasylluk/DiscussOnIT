@@ -3,9 +3,19 @@
 <p> 
 <%= @question.category_id %>
 </p>
-<p><%= @question.text.html_safe %></p>
+<p><%= @question.text%></p>
+<%=render @qcomments%>
 <br>
+<div>
 <%=form_for :answer, url:question_answers_path(@question.id) do |f|%>
-	<%=render '/answers/form', f:f %>&emsp;
+<%=render '/answers/form', f:f %>
 <%end%>
+<%=form_for :qcomment,  url:question_qcomments_path(@question.id) do |g| %>
+<%=render "/qcomments/form", g:g %>
+<%end%>
+
+</div>
+<hr>
+
+<%=render @answers%>
 <hr>
