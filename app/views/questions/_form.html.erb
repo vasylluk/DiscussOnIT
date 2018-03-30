@@ -1,7 +1,8 @@
 <div>
 <div class="form-group">
-<%= f.label :category %>
-<%= f.text_field :category %>
+<%= f.label :all_categories, t('tags') %>
+<%= f.text_field :all_categories, class: "form-control" %>
+<small class="form-text text-muted"><%=t('enter_cst')%></small>
 </div>
 
 <div class="form-group">
@@ -11,7 +12,8 @@
 
 <div class="form-group">
 <%= f.label :text%>
-<%= f.text_area :text %>
+<%= text_area_tag :text, "", :class => "tinymce", :rows => 40, :cols => 120 %>
+<%= tinymce %>
 </div>
  
 <%= f.submit "Save"%>

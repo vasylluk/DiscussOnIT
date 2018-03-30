@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322210302) do
+ActiveRecord::Schema.define(version: 20180330031225) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,18 +43,49 @@ ActiveRecord::Schema.define(version: 20180322210302) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "anscomments", force: :cascade do |t|
+    t.string "text"
+    t.integer "answer_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "answer_votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "answer_id"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "question_id"
     t.string "text"
-    t.integer "score"
+    t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "count"
+    t.integer "count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chosen_questions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "qcomments", force: :cascade do |t|
+    t.string "text"
+    t.integer "question_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,9 +93,16 @@ ActiveRecord::Schema.define(version: 20180322210302) do
   create_table "questions", force: :cascade do |t|
     t.string "name"
     t.string "text"
-    t.integer "count"
+    t.integer "count", default: 0
     t.integer "category_id"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -82,6 +120,11 @@ ActiveRecord::Schema.define(version: 20180322210302) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

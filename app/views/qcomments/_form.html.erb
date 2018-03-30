@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Прокоментувати</button>
+  <div id="demo" class="collapse">
+  	<br>
+   	<%= g.text_area :text, :class => "tinymce", :rows => 8, :cols => 100 %>
+	<%= tinymce %>
+	<br>
+	<p><%= g.submit "Надіслати", :class=>"btn btn-primary"%></p>
+</div> 
