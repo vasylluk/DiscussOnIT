@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+      <%=link_to "DoIT", root_path, :class=>"navbar-brand"%>
+    <li class="nav-item">
+      <%= link_to t('tags'), categories_path, :class => 'nav-link'%>
+    </li>
+
+    </ul>
+    </div>
+
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+         <%if user_signed_in?%>
+    <span class="navbar-text">
+      <%= current_user.nickname %>
+    </span>
+        <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        <img class="img-circle" style="margin-top: -4px; margin-bottom: -4px;" height="30px" width="30px" src="<%=current_user.avatar.url%>">
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <%= link_to t('profile'), edit_user_registration_path, :class => 'dropdown-item'%>
+        <hr>
+        <%= link_to t('sign_out'), destroy_user_session_path,:method=>'delete', :class => 'dropdown-item'%>
+
+      </div>
+    </li>
+        <li class="nav-item">
+             
+        </li>
+    <%else%>
+        <li class="nav-item">
+             <%= link_to t('sign_in'), new_user_session_path, :class => 'nav-link'%>
+        </li>   
+    <%end%>   
+        </ul>
+    </div>
+</nav>

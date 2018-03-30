@@ -1,0 +1,33 @@
+/* Footer
+--------------------------------------------------- */
+$footer-height: 20px; /* set the footer height here */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: $footer-height;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  line-height: $footer-height;
+}
+/*------------------------------------------------- */
+
+.forms-b form {
+    display: inline;
+}
+
+.hr-1 {
+  height: 0px;
+  margin: 0px;
+  border-bottom: 1px solid #fff;
+  opacity: 0;
+  font-size: 1px;
+}
+
+@import "bootstrap";
