@@ -51,7 +51,7 @@ class QuestionsController < ApplicationController
 	private
 
 	def question_params
-		params.require(:question).permit(:user_id,:category_id,:name,:text,:answers, :count)
+		params.require(:question).permit(:user_id,:all_categories,:name,:text,:answers, :count)
 	end
 
 	def set_question

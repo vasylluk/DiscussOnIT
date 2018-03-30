@@ -1,2 +1,2 @@
-<p>Назва: <%=link_to category.name, category_path(category.name) %></p>
-<p>Усього запитань: <%= category.count%></p>
++<p>Назва: <%=link_to category.name, category_path(category.name) %></p>
++<p>Кількість питань: <%= Tag.where(category_id: category.id).count%></p>

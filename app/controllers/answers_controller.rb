@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
        		@question.update(count: @question.count+1)
 			redirect_to question_path(@answer.question.id)
 		else
-
+			render 'form'
 		end
 	end
 

@@ -1,9 +1,9 @@
 <h3><%= @question.name %></h3>
 <hr>
 <p> 
-<%= @question.category_id %>
-</p>
+<%= raw @question.categories.map(&:name).map{ |t| link_to t, category_path(t)}.join(' ') %></p>
 <p><%= @question.text%></p>
+
 <%=render @qcomments%>
 <br>
 <div>
