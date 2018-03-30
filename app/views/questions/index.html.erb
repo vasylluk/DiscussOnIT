@@ -1,8 +1,28 @@
-<%= link_to "Categories", categories_path%></br>
-<%= link_to "New question", new_question_path%></br>
-<%if user_signed_in?%>
-	<%= link_to "Sign Out", destroy_user_session_path, method: :delete%>
-<%else%>
-	<%= link_to "Login", new_user_session_path%>
-<%end%>
+<div class="row">
+<div class="col">	
+<div class="row">
+	<div class="col">
+	<ul class="nav">
+	  <span class="navbar-text font-weight-bold">
+	  	<%= t('all_questions') %>
+	  </span>
+	</ul>
+	</div>
+<!--  separator  -->	
+	<div class="col">
+	<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a href = "/questions/new"><button type="button" class="btn btn-primary"><%= t('new_question') %></button></a>
+  </li>
+</ul>
+
+</div>
+</div>
+<hr>
+
 <%=render @questions%>
+</div>
+<div class="col-12 col-md-3">
+	 <%= render "layouts/sidebar"%>
+</div>
+</div>

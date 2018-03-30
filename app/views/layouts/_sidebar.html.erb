@@ -1,0 +1,29 @@
+<div class="card d-sm-none d-md-block">
+<div id="qrcode"></div>
+	<div class="card-body">
+	<p class="card-text"><%=t('qr_text')%></p>
+	</div>
+</div>
+<br/>
+<div class="d-sm-none d-md-block card">
+	<%= image_tag "your-ad-here.png", :class=>"card-img-top"  %>
+
+		<div class="card-body">
+		<p class="card-text"><%=t('your_ad_here')%> <br />ads@doit.com</p>
+		</div>
+</div>
+
+
+<script type="text/javascript">
+if (document.getElementById("qrcode").innerHTML == ""){
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: location.href,
+	width: 256,
+	height: 256,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+document.getElementById("qrcode").getElementsByTagName("img")[0].className = "card-img-top";
+}
+</script>

@@ -1,39 +1,46 @@
-<h2>Sign up</h2>
-
+<div class="row">
+<div class="col">
+<h2><%= t('sign_up') %></h2>
+<br />
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-<div class="field">
-    <%= f.label :nickanme %><br />
-    <%= f.text_field :nickname%>
-</div>
-
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname, autofocus: true , :class=>"form-control" %>
   </div>
-
+<br />
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :email, t('email') %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" , :class=>"form-control" %>
+  </div>
+<br />
+  <div class="field">
+    <%= f.label :password,t('password') %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length.to_s+" "+t('characters_minimum') %>)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off" , :class=>"form-control" %>
   </div>
-
+<br />
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation,t('password_confirmation') %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" , :class=>"form-control" %>
   </div>
-
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
-  </div>
-
+<br />
+<div class="custom-file">
+  <%= f.file_field :avatar, :class=>"custom-file-input", :id=>"customFile" %>
+  <label class="custom-file-label" for="customFile"><%= t('chose_avatar') %></label>
+</div>
+  <br />  <br />
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t('sign_up') , :class=>"btn btn-primary"%>
   </div>
+  <br />
 <% end %>
 
 <%= render "users/shared/links" %>
+</div>
+<div class="col">
+  </div>
+</div>

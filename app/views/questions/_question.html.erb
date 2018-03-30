@@ -1,5 +1,20 @@
+<style type="text/css">
+	.badge a{
+		color: white;
+	}
+}
+</style>
+<div>
 	<h5>
 		<%=link_to question.name, question_path(question.id) %>
-		<span title="Кількість відповідей"><%= question.count %></span>
-		<%=question.user.nickname%>
+		<span class="badge badge-primary" data-toggle="tooltip" title="Кількість відповідей"><%= question.count %></span>&emsp;—&emsp;<%=image_tag question.user.avatar.url, width:22,height:22%> <small><b class="text-secondary"><%=question.user.nickname%></b></small>
 	</h5>
+	<p>
+		<%=strip_tags(question.text)[0..255]%>...
+		<br>
+		<div><%= raw question.categories.map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
+			
+		</div>
+	</p>
+	<hr>
+</div>
