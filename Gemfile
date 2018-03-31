@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 #for administrating
+gem 'rails-i18n', '~> 5.1'
 gem 'activeadmin'
 #user registrations
 gem 'devise'
