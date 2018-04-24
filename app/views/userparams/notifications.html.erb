@@ -5,4 +5,7 @@
 		<p><%=link_to Question.find(notif.resource_id).name , question_path(notif.resource_id)%><br>
 		<%= notif.text%></p>
 	<%end%>
+	<%if notif.resource_type=="base"%>
+		<%=notif.text%>
+	<%end%>
 <%end%>

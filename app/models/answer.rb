@@ -17,5 +17,4 @@ class Answer < ApplicationRecord
     			#end
     		end
     	end
-	#@notification=Notification.create(user_id: current_user.id, text: "Ваше питання успішно додано", url: "http://localhost:3000/"+question_path(@question))
 end
