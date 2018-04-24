@@ -1,10 +1,10 @@
 <h3>Профіль користувача <b><%=@userparam.user.nickname%></b></h3>
 <%=link_to "Редагувати профіль", edit_userparam_path(current_user.userparam.id)%>
-<p><%=image_tag @userparam.avatar.url%></p>
+<p><%=image_tag @userparam.avatar.url,width:100%></p>
 <p>Про себе:
 <%=@userparam.bio%>
 </p>
 <h5><%=@userparam.country%></h5>
 <h5><%=@userparam.univ%></h5>
 <h5><%=@userparam.phone%></h5>
-<%=link_to "Змінити вхідні данні", edit_user_registration_path%>
+<%=link_to "Змінити вхідні дані", edit_user_registration_path%>

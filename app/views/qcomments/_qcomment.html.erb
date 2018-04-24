@@ -1,7 +1,4 @@
-<div>
-	<h6>Користувач <span class="fa fa-user"></span> <b><%=qcomment.user.nickname%></b> прокоментував:</h6>
-	<p>
-		<%=qcomment.text.html_safe%>
-	</p>
-	<hr>
-</div> 
+<div class="bg-light small">
+		<b><span class = "fa fa-user"></span> <%=qcomment.user.nickname%>:</b> <%=strip_tags(qcomment.text)%>
+</div>
+<hr class="hr-1" />
