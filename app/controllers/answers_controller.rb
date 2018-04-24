@@ -17,7 +17,6 @@ class AnswersController < ApplicationController
 
 	def update
 		@answer.update(answer_params)
-
 		redirect_to question_path(@answer.question.id)
 	end
 

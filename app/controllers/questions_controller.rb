@@ -21,8 +21,7 @@ class QuestionsController < ApplicationController
 		params[:question][:user_id]=current_user.id
 		@question=Question.create(question_params)
 		if @question.save
-			chosen
-			#@notification=Notification.create(user_id: current_user.id, text: "Ваше питання успішно додано", url: "http://localhost:3000/"+question_path(@question))
+			ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
 			redirect_to question_path(@question.id)
 		else
 
@@ -50,6 +49,7 @@ class QuestionsController < ApplicationController
 		else
 		   @chosen=ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
 		end
+		redirect_to question_path(@question.id)
 	end
 
 	private
