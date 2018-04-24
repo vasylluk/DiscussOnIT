@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   resources :userparams,only:[:show,:edit,:update]
-  
+  get "notifications", to: "userparams#notifications", as:"notifications"
+  get "chosens", to:"questions#chosens",as:"chosens"
+
+
   resources :categories, only:[:index,:show]
 
   resources :questions do 

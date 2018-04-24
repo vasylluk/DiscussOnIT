@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20180424202022) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "user_id"
+    t.string "resource_type"
+    t.integer "resource_id"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

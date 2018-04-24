@@ -52,6 +52,14 @@ class QuestionsController < ApplicationController
 		redirect_to question_path(@question.id)
 	end
 
+	def chosens
+		@questions=[]
+		ChosenQuestion.where(user_id: current_user.id).each do |chosen|
+			@questions<<chosen.question
+		end
+
+	end
+
 	private
 
 	def question_params

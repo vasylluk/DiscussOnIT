@@ -23,6 +23,8 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to t('profile'), userparam_path(current_user.userparam.id), class:'dropdown-item'%>
+        <%= link_to "Сповіщення", notifications_path,class:'dropdown-item'%>
+        <%= link_to "Закладки", chosens_path ,class:'dropdown-item'%>
         <hr>
         <%= link_to t('sign_out'), destroy_user_session_path,method: :delete, class:"dropdown-item"%>
 
