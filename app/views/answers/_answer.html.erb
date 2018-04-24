@@ -1,8 +1,9 @@
 <p><%=answer.text.html_safe%></p>
-<p><%=answer.user.email%></p>
-<p><%=answer.score%> <%=link_to '+', positiv_vote_path(answer.id), method: :get%><%=link_to '-', negativ_vote_path(answer.id)%></p>
+<h6>Користувач <span class="fa fa-user"></span> <b><%=answer.user.nickname%></b> відповів:</h6>
+	<p>
+<p><%=answer.score%> <%=link_to '+', positiv_vote_path(answer.id)%><%=link_to '-', negativ_vote_path(answer.id)%></p>
 <%=render Anscomment.where(answer_id: answer.id)%>
 <%=form_for :anscomment,  url:answer_anscomments_path(answer.id) do |f| %>
 	<%=render "anscomments/form", f:f%>
 <%end%>
- <p><%=link_to "Видалити", question_answer_path(answer.question.id,answer.id), method: :delete%></p> 
+<p><%=link_to "Видалити", question_answer_path(answer.question.id,answer.id), data: { confirm: 'are you shure?'}, :method => :delete %></p> 

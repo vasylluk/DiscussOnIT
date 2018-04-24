@@ -44,13 +44,12 @@ class QuestionsController < ApplicationController
 	end
 
 	def chosen
-		@chosen=ChosenQuestion.where(question_id: @question.id).first
-		if @chosen == nil
-			@chosen=ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
-		else
-		    @chosen.delete
-		end
 		
+		if @chosen=ChosenQuestion.find_by(user_id: current_user.id, question_id: @question.id)
+		    @chosen.delete
+		else
+		   @chosen=ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
+		end
 	end
 
 	private

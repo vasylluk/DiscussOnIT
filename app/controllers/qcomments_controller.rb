@@ -21,7 +21,7 @@ class QcommentsController < ApplicationController
 	def destroy
 		@question=Question.find(@qcomment.question.id)
 		@qcomment.destroy
-		redirect_to question_path
+		redirect_to question_path(@question.id)
 	end
 
 	private

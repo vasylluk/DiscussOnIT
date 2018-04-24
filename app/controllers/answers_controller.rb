@@ -23,9 +23,9 @@ class AnswersController < ApplicationController
 
 	def destroy
 		@question=Question.find(@answer.question.id)
-		@question.update(count: @question.count-1)
 		@answer.destroy
-		redirect_to question_path(params[:question_id])
+		@question.update(count: @question.count-1)
+		redirect_to question_path(@question.id)
 	end
 
 	def positiv_vote
