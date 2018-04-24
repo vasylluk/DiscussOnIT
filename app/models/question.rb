@@ -5,7 +5,7 @@ class Question < ApplicationRecord
 	has_many :answers, dependent: :destroy
 	has_many :chosen_questions, dependent: :destroy
 	has_many :qcomments, dependent: :destroy
-    validates :name, :text, :category_id, presence: true
+    validates :name, :text,  presence: true
     def all_categories
     	self.categories.map(&:name).join(', ')
     end

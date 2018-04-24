@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 	end
 
 	def show
-		@answers=Answer.where(question_id: @question.id).order(scores: :DESC)
+		@answers=Answer.where(question_id: @question.id).order(score: :DESC)
 		@qcomments=Qcomment.where(question_id: @question.id)
 		if current_user != nil
 			@chosen=ChosenQuestion.where(user_id: current_user.id, question_id: @question.id).first
@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
 		@question=Question.create(question_params)
 		if @question.save
 			chosen
-			@notification=Notification.create(user_id: current_user.id, text: "Ваше питання успішно додано", url: "http://localhost:3000/"+question_path(@question))
+			#@notification=Notification.create(user_id: current_user.id, text: "Ваше питання успішно додано", url: "http://localhost:3000/"+question_path(@question))
 			redirect_to question_path(@question.id)
 		else
 

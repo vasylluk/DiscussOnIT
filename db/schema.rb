@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 20180330031225) do
     t.string "name"
     t.string "text"
     t.integer "count", default: 0
-    t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
