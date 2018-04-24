@@ -1,4 +1,4 @@
-<p><%=answer.text%></p>
+<p><%=answer.text.html_safe%></p>
 <p><%=answer.user.email%></p>
 <p><%=answer.score%> <%=link_to '+', positiv_vote_path(answer.id), method: :get%><%=link_to '-', negativ_vote_path(answer.id)%></p>
 <%=render Anscomment.where(answer_id: answer.id)%>
