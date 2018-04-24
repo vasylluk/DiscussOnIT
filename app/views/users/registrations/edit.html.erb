@@ -10,6 +10,11 @@
     <div class="col-sm-9">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", :class=>"form-control", :id=>"inputEmail3" %>
     </div>
+<br />
+  <div class="custom-file">
+    <%= f.file_field :avatar, :class=>"custom-file-input", :id=>"customFile" %>
+    <label class="custom-file-label" for="customFile"><%= t('chose_avatar') %></label>
+  </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%=t('wait_confirm')%>: <%= resource.unconfirmed_email %></div>
