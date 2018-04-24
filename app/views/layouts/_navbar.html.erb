@@ -11,6 +11,7 @@
 
 
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+
         <ul class="navbar-nav ml-auto">
          <%if user_signed_in?%>
     <span class="navbar-text">
@@ -18,7 +19,7 @@
     </span>
         <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        <img class="img-circle" style="margin-top: -4px; margin-bottom: -4px;" height="30px" width="30px" src="<%=current_user.userparam.avatar.url%>">
+        <img class="img-circle" style="margin-top: -4px; margin-bottom: -4px;" height="30px" src="<%=current_user.userparam.avatar.url%>">
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <%= link_to t('profile'), userparam_path(current_user.userparam.id), class:'dropdown-item'%>

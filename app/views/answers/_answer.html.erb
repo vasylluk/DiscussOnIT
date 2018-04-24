@@ -1,9 +1,24 @@
-<p><%=answer.text.html_safe%></p>
-<h6>Користувач <span class="fa fa-user"></span> <b><%=answer.user.nickname%></b> відповів:</h6>
-	<p>
-<p><%=answer.score%> <%=link_to '+', positiv_vote_path(answer.id)%><%=link_to '-', negativ_vote_path(answer.id)%></p>
-<%=render Anscomment.where(answer_id: answer.id)%>
-<%=form_for :anscomment,  url:answer_anscomments_path(answer.id) do |f| %>
-	<%=render "anscomments/form", f:f%>
-<%end%>
-<p><%=link_to "Видалити", question_answer_path(answer.question.id,answer.id), data: { confirm: 'are you shure?'}, :method => :delete %></p> 
+<div class="row clearfix">
+	<div class="col-1">
+		<%=link_to positiv_vote_path(answer.id) do%>
+		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
+		<%end%>
+		<h3 class="text-center text-dark" style="margin: 0; margin-left: 2px;"><%=answer.score%></h3>
+		<%=link_to negativ_vote_path(answer.id) do%>
+		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
+		<%end%>
+	</div>
+	<div class="col">
+	<%=answer.text.html_safe%>
+	<%=render Anscomment.where(answer_id: answer.id)%>
+		<%=form_for :anscomment,  url:answer_anscomment_path(answer.id) do |h| %>
+		<small class="float-left"><b>
+			<%=link_to t('delete'), question_answer_path(answer.question.id,answer.id), method: :delete, :class=>"text-secondary"%>
+			&emsp;
+			<%=render "anscomments/form", h:h%>
+		</b></small>
+		<%end%>
+	<small class="text-right text-dark float-right"><%=image_tag current_user.userparam.avatar.url, height:20%> <b class="align-bottom"><%=answer.user.nickname%></b></small>
+</div>
+</div>
+<hr>
