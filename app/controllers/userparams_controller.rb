@@ -1,6 +1,6 @@
 class UserparamsController < ApplicationController
 	before_action :authenticate_user!, except:[:index,:show]
-	before_action :get_userparam
+	before_action :get_userparam,except:[:notifications]
 
 	def show
 		
@@ -13,6 +13,10 @@ class UserparamsController < ApplicationController
 	def update
 		@userparam.update(userparam_params)
 		redirect_to userparam_path(@userparam.id)
+	end
+
+	def notifications
+		@notifications = Notification.where(user_id: current_user.id)
 	end
 
 	private

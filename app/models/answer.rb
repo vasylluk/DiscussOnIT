@@ -12,9 +12,10 @@ class Answer < ApplicationRecord
     		@chosens = ChosenQuestion.where(question_id: self.question.id)
     		@chosens.each do |chose|
     			#if chose.user_id != current_user.id
-    				Notification.create(user_id: chose.user_id, text: "New answer to question")
+    			@noti = Notification.create(user_id: chose.user_id,resource_type:"question", text: "New answer to question "+self.question.name, resource_id:self.question.id)
+    			@noti.save
     			#end
     		end
     	end
-	
+	#@notification=Notification.create(user_id: current_user.id, text: "Ваше питання успішно додано", url: "http://localhost:3000/"+question_path(@question))
 end
