@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_answer, only:[:update,:destroy,:positiv_vote,:negativ_vote]
+	before_action :set_answer, only:[:update,:destroy,:positiv_vote,:negativ_vote,:right]
 
 	def create
 		params[:answer][:user_id]=current_user.id
@@ -55,6 +55,19 @@ class AnswersController < ApplicationController
 	    end
 	    @answer.update(score: AnswerVote.where(answer: @answer.id).sum(:score))
 	    redirect_to question_path(@answer.question.id)
+	end
+
+	def right
+		
+		if @answer.question.user.id== current_user.id
+			if @answer.right
+			@answer.update(right: false)
+			else
+			@answer.update(right: true)
+			end
+			@answer.save
+		end
+		redirect_to question_path(@answer.question.id)
 	end
 
 	private

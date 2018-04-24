@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only:[] do
+    member do
+      get :right
+    end
     resources :anscomments, only:[:create,:update,:destroy]
   end
 

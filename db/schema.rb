@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20180424202022) do
     t.integer "question_id"
     t.string "text"
     t.integer "score", default: 0
+    t.boolean "right", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

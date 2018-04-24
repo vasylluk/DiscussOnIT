@@ -5,6 +5,7 @@ class CreateAnswers < ActiveRecord::Migration[5.1]
       t.integer :question_id
       t.string :text
       t.integer :score
+      t.boolean :right , default: false
 
       t.timestamps
     end
