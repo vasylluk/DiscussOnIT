@@ -3,9 +3,9 @@
 <div class="col">
 <h3><%= @question.name %> &nbsp; 
   	<%if ChosenQuestion.find_by(question_id: @question.id, user_id: current_user.id) %>
-		<%= link_to "", chosen_question_path , class:"fa fa-star"%>
+		<%= link_to "", chosen_question_path , class:"fa fa-star", style:"text-decoration: none;"%>
 	<%else%>
-		<%= link_to "", chosen_question_path , class:"fa fa-star-o"%>
+		<%= link_to "", chosen_question_path , class:"fa fa-star-o",style:"text-decoration: none;"%>
 	<%end%>
 
 	</h3>

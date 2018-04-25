@@ -9,7 +9,7 @@
 <div class="row clearfix">
 	<div class="col-1">
 		<%=link_to qpositiv_vote_path(question.id) do%>
-		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
+		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block", %>
 		<%end%>
 		<h3 class="text-center text-dark" style="margin: 0; margin-left: 2px;"><%=question.score%></h3>
 		<%=link_to qnegativ_vote_path(question.id) do%>
