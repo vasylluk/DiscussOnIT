@@ -1,3 +1,10 @@
-<h1><%=@category.name%></h1>
-<hr />
-<%=render @questions%>
+<div class="row">
+<div class="col">
+	<h1><%=@category.name%></h1>
+	<hr />
+	<%=render @questions%>
+</div>
+<div class="col-12 col-md-3">
+	 <%= render "layouts/sidebar"%>
+</div>
+</div>

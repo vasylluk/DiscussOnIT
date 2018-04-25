@@ -1,13 +1,12 @@
-
+<div>
+	<h6>Теги:</b></h6>
+	<%=render Category.all%>
+</div>
 <br/>
+
 <%=render "layouts/qrcode"%>
 <br/>
-<center>
-Теги:
-<br/>
-<%=render Category.all%>
-</center>
-<br/>
+
 <div class="d-sm-none d-md-block card">
 	<%= image_tag "your-ad-here.png", :class=>"card-img-top"  %>
 
@@ -15,4 +14,4 @@
 		<p class="card-text"><%=t('your_ad_here')%> <br />ads@doit.com</p>
 		</div>
 </div>
-
+<br/>

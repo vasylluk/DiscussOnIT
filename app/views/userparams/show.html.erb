@@ -7,22 +7,22 @@
 <div class="col">
 <h3>Профіль користувача <b><%=@userparam.user.nickname%></b></h3>
 <h5><%=@userparam.user.email%></h5>
-<h5><%=ISO3166::Country[@userparam.country].translations[I18n.locale.to_s]%></h5>
+<%if @userparam.country!=nil%><h5><%=ISO3166::Country[@userparam.country].translations[I18n.locale.to_s]%></h5><%end%>
 <h5><%=@userparam.univ%></h5>
 <h5><%=@userparam.phone%></h5>
 <%if current_user.id== @userparam.user.id%>
-<%=link_to "Редагувати профіль", edit_userparam_path(current_user.userparam.id)%>&nbsp;
-<%=link_to "Змінити вхідні дані", edit_user_registration_path%>
+<%=link_to "Редагувати профіль", edit_userparam_path(current_user.userparam.id)%>&emsp;
+<%=link_to "Змінити дані для входу", edit_user_registration_path%>
 <%end%>
 </div>
 </div>
 <hr/>
 <div class="row">
-<div class="col">
+<%if @userparam.bio!=""%><div class="col">
 	<p>Про себе:
 <%=@userparam.bio%>
 </p>
 
-</div>
+</div><%end%>
 
 </div>
