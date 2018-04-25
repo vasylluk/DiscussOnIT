@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   get "questions/:id/qpositiv_vote", to: "questions#positiv_vote", as:"qpositiv_vote"
   get "questions/:id/qnegativ_vote", to: "questions#negativ_vote", as:"qnegativ_vote"
 
+
+  resources :posts
 end

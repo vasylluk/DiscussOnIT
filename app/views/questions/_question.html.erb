@@ -27,7 +27,9 @@
 	<p>
 		<%=strip_tags(question.text)[0..255]%>...
 		<br>
-		<div><%= raw question.categories.map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
+		<div><p> 
+			<%= raw Tag.where(resource_id: question.id, resource_type: "question").map{|tag| tag = Category.find(tag.category_id)}.map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
+			</p>
 			
 		</div>
 	</p>

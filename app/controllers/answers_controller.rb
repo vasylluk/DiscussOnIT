@@ -10,6 +10,7 @@ class AnswersController < ApplicationController
 			@answer=Answer.create(answer_params)
 			if @answer.save
        			@question.update(count: @question.count+1)
+       			NotificationMailer.with(user: @question.user,text: "hellow qr code").answer_email.deliver_now
 				redirect_to question_path(@answer.question.id)
 			else
 				render 'form'
