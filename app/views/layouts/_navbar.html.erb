@@ -32,11 +32,11 @@
         <img class="img-circle" style="margin-top: -4px; margin-bottom: -4px;" height="30px" src="<%=current_user.userparam.avatar.url%>">
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <%= link_to t('profile'), userparam_path(current_user.userparam.id), class:'dropdown-item'%>
-        <%= link_to "Сповіщення", notifications_path,class:'dropdown-item'%>
-        <%= link_to "Закладки", chosens_path ,class:'dropdown-item'%>
+        <p class="dropdown-item"><span class = "fa fa-user" style="color: lightgray;"></span>&nbsp;<%= link_to t('profile'), userparam_path(current_user.userparam.id)%></p>
+        <p class="dropdown-item"><span class = "fa fa-envelope " style="color: lightgray;"></span>&nbsp;<%= link_to "Сповіщення", notifications_path%></p>
+        <p class="dropdown-item"><span class = "fa fa-star" style="color: lightgray;"></span>&nbsp;<%= link_to "Закладки", chosens_path %></p>
         <hr>
-        <%= link_to t('sign_out'), destroy_user_session_path,method: :delete, class:"dropdown-item"%>
+        <p class="dropdown-item"><span class = "fa fa-sign-out" style="color: lightgray;"></span>&nbsp;<%= link_to t('sign_out'), destroy_user_session_path,method: :delete%></p>
 
       </div>
     </li>
