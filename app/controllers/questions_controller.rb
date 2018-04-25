@@ -9,11 +9,8 @@ class QuestionsController < ApplicationController
 	end
 
 	def show
-		@answers=Answer.where(question_id: @question.id).order(score: :DESC)
+		@answers=Answer.where(question_id: @question.id).order(right: :DESC,score: :DESC)
 		@qcomments=Qcomment.where(question_id: @question.id)
-		if current_user != nil
-			@chosen=ChosenQuestion.where(user_id: current_user.id, question_id: @question.id).first
-		end
 	end
 
 	def new

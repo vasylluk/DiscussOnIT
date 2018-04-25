@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "chosens", to:"questions#chosens",as:"chosens"
 
 
-  resources :categories, only:[:index,:show]
+  resources :categories, only:[:show]
 
   resources :questions do 
     member do 
