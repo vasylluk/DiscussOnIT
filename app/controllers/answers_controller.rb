@@ -1,18 +1,23 @@
 class AnswersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_answer, only:[:update,:destroy,:positiv_vote,:negativ_vote,:right]
+	before_action :set_answer, except:[:create]
 
 	def create
-		params[:answer][:user_id]=current_user.id
-		params[:answer][:question_id]=params[:question_id]
-		@answer=Answer.create(answer_params)
-		if @answer.save
-			@question=Question.find(@answer.question_id)
-       		@question.update(count: @question.count+1)
-			redirect_to question_path(@answer.question.id)
+		@question=Question.find(params[:question_id])
+		if current_user.id != @question.user.id
+			params[:answer][:user_id]=current_user.id
+			params[:answer][:question_id]=params[:question_id]
+			@answer=Answer.create(answer_params)
+			if @answer.save
+       			@question.update(count: @question.count+1)
+				redirect_to question_path(@answer.question.id)
+			else
+				render 'form'
+			end
 		else
-			render 'form'
+			redirect_to question_path(params[:question_id])
 		end
+
 	end
 
 	def update
@@ -38,6 +43,7 @@ class AnswersController < ApplicationController
 	        	@vote.update(score: 1)
 	        end
 	    end
+
 	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
 	    redirect_back(fallback_location: root_path)
 	end
@@ -53,8 +59,11 @@ class AnswersController < ApplicationController
 	    	    @vote.update(score:-1)
 	        end
 	    end
+
 	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
 	    redirect_back(fallback_location: root_path)
+
+
 	end
 
 	def right

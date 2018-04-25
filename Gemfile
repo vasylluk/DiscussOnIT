@@ -49,7 +49,6 @@ gem 'bootstrap', '~> 4.0.0'
 #моя прелесть
 gem 'country_select'
 
-
 #tests show
 gem 'simplecov', require: false, group: :test
 group :development, :test do

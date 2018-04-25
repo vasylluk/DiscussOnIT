@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20180425030335) do
     t.string "name"
     t.string "text"
     t.integer "count", default: 0
-    t.integer "score"
+    t.integer "score", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

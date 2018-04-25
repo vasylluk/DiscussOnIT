@@ -1,7 +1,7 @@
 <!-- Button trigger modal -->
-<b><a href="#" data-toggle="modal" data-target="#newQCommentModal" class="text-secondary"><%=t('comment')%></a></b>
+<b><a href="#" data-toggle="modal" data-target="#newAnscommentModal" class="text-secondary"><%=t('comment')%></a></b>
 <!-- Modal -->
-<div class="modal fade" id="newQCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="newAnscommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="modal-body">
-	    <%= pp h.text_area :text, :class => "form-control", :rows => 8 %>
+	    <%= h.text_area :text, :class => "form-control", :rows => 8 %>
 		<%= tinymce %>
 	  </div>
       <div class="modal-footer">
