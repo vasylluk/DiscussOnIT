@@ -8,7 +8,7 @@
 		<%=link_to negativ_vote_path(answer.id) do%>
 		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
 		<%end%>
-			<%if answer.right %>
+	<%if answer.right %>
 		<%=link_to "Правильна" ,right_answer_path(answer.id)%>
 	<%else%>
 		<%=link_to "Підтвердити",right_answer_path(answer.id)%> 
