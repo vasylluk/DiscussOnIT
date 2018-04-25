@@ -2,11 +2,15 @@
 <div class="row">
 <div class="col">
 <h3><%= @question.name %> &nbsp; 
-	<%=link_to "", edit_question_path(@question.id), class:"fa fa-pencil" , style:"text-decoration: none;"%>
+	<%if user_signed_in?%>
+	<%if current_user.id==@question.user.id%>
+		<%=link_to "", edit_question_path(@question.id), class:"fa fa-pencil" , style:"text-decoration: none;"%>
+	<%end%>
   	<%if ChosenQuestion.find_by(question_id: @question.id, user_id: current_user.id) %>
 		<%= link_to "", chosen_question_path , class:"fa fa-star", style:"text-decoration: none;"%>
 	<%else%>
 		<%= link_to "", chosen_question_path , class:"fa fa-star-o",style:"text-decoration: none;"%>
+	<%end%>
 	<%end%>
 
 	</h3>
@@ -18,7 +22,7 @@
 <%=render @qcomments%>
 <br>
 <div class="forms-b">
-<%if current_user.id !=@question.user.id%>
+<%if user_signed_in? && current_user.id !=@question.user.id%>
 	<%=form_for :answer, url:question_answers_path(@question.id) do |f|%>
 		<%=render '/answers/form', f:f %>&emsp;
 	<%end%>
