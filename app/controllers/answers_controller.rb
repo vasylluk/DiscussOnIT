@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
 	end
 
 	def positiv_vote
-		if current_user.id != @question.user.id
+		if current_user.id != @answer.user.id
 		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
 		if @vote==nil
 		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: 1)
@@ -51,7 +51,7 @@ class AnswersController < ApplicationController
 	end
 
 	def negativ_vote
-		if current_user.id != @question.user.id
+		if current_user.id != @answer.user.id
 		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
 		if @vote==nil
 		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: -1)
