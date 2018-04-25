@@ -1,9 +1,9 @@
 class UserparamsController < ApplicationController
 	before_action :authenticate_user!, except:[:index,:show]
-	before_action :get_userparam,except:[:notifications]
+	before_action :get_userparam,except:[:notifications,:show]
 
 	def show
-		
+		@userparam= Userparam.find(params[:id])
 	end
 
 	def edit

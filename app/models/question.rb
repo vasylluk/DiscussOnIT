@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+    after_update :question_update
+
 	belongs_to :user
 
 	has_many :tags
@@ -18,4 +20,8 @@ class Question < ApplicationRecord
             Category.where(name: name.strip).first_or_create!
         end
     end
+
+
+        def question_update
+        end
 end
