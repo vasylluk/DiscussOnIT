@@ -17,7 +17,7 @@
 
 	<div class="col">
 	<%=answer.text.html_safe%>
-	<%=render Anscomment.where(answer_id: answer.id)%>
+	
 		<%=form_for :anscomment,  url:answer_anscomments_path(answer.id) do |h| %>
 		<small class="float-left"><b>
 			<%=link_to t('delete'), question_answer_path(answer.question.id,answer.id),data:{confirm: "are you shore?"}, method: :delete, :class=>"text-secondary"%>
@@ -25,7 +25,9 @@
 			<%=render "anscomments/form", h:h%>
 		</b></small>
 		<%end%>
-	<small class="text-right text-dark float-right"><%=image_tag answer.user.userparam.avatar.url, height:20%> <b class="align-bottom"><%=answer.user.nickname%></b></small>
+	<small class="text-right text-dark float-right"><%=image_tag answer.user.userparam.avatar.url, height:20%> <b class="align-bottom"><%=answer.user.nickname%></b></small><br/>
+	<%=render Anscomment.where(answer_id: answer.id)%>
 </div>
+
 </div>
 <hr>
