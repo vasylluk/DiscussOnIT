@@ -15,13 +15,14 @@ class AnscommentsController < ApplicationController
 
 	def update
 		@anscommet.update(anscomment_params)
-		redirect_to question_path(@anscomment.answer.question.id)
+		redirect_back(fallback_location: root_path)
 	end
 
 	def destroy
-		@answer=Answer.find(@anscomment.answer.id)
+		if current_user.id == @anscomment.user.id
 		@anscomment.destroy
-		redirect_to question_path(params[:answer_id])
+		end
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

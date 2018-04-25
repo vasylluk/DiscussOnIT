@@ -8,13 +8,15 @@
 		<%=link_to negativ_vote_path(answer.id) do%>
 		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
 		<%end%>
+	<center>
 	<%if answer.right %>
-		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: lightgreen;"></span><%end%>
+		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: green;"></span><%end%>
 	<%else%>
 		<%if current_user.id == answer.question.user.id%>
-		<%=link_to right_answer_path(answer.id)do%>Підтвердити<%end%>
+		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: lightgrey;"><%end%>
 		<%end%>
 	<%end%>
+	</center>
 	</div>
 
 	<div class="col">
