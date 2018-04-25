@@ -13,8 +13,6 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 
         <ul class="navbar-nav ml-auto">
-<<<<<<< HEAD
-=======
         <li>
           <%= form_tag("/search", method: "get") do %>
             <%= label_tag(:q, "Search for:") %>
@@ -22,7 +20,6 @@
             <%= submit_tag("Search") %>
           <% end %>
         </li>
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
          <%if user_signed_in?%>
     <span class="navbar-text">
       <%= current_user.nickname %>

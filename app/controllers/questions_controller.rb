@@ -1,18 +1,11 @@
 class QuestionsController < ApplicationController
 	before_action :authenticate_user!, except:[:index,:show]
-<<<<<<< HEAD
-	before_action :set_question, only:[:show,:edit,:update,:destroy,:chosen]
-
-	def index
-		@questions=Question.all
-=======
 	before_action :set_question, only:[:show,:edit,:update,:destroy,:chosen,:positiv_vote,:negativ_vote]
 
 	def index
 		@questions=Question.all
 	    @q = Question.ransack(params[:q])
 	    @squestios = @q.result(distinct: true)
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 	end
 
 	def show
@@ -51,8 +44,6 @@ class QuestionsController < ApplicationController
 		redirect_to root_path
 	end
 
-<<<<<<< HEAD
-=======
 	def positiv_vote
 		@vote=QuestionVote.where(user_id: current_user.id,question_id: @question.id).first
 		if @vote==nil
@@ -83,7 +74,6 @@ class QuestionsController < ApplicationController
 	    redirect_back(fallback_location: root_path)
 	end
 
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 	def chosen
 		
 		if @chosen=ChosenQuestion.find_by(user_id: current_user.id, question_id: @question.id)
@@ -105,11 +95,7 @@ class QuestionsController < ApplicationController
 	private
 
 	def question_params
-<<<<<<< HEAD
-		params.require(:question).permit(:user_id,:all_categories,:name,:text,:answers)
-=======
 		params.require(:question).permit(:user_id,:all_categories,:name,:text,:answers,:score)
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 	end
 
 	def set_question

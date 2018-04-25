@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180424202022) do
-=======
 ActiveRecord::Schema.define(version: 20180425030335) do
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -104,8 +100,6 @@ ActiveRecord::Schema.define(version: 20180425030335) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-=======
   create_table "question_votes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "question_id"
@@ -114,15 +108,11 @@ ActiveRecord::Schema.define(version: 20180425030335) do
     t.datetime "updated_at", null: false
   end
 
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
   create_table "questions", force: :cascade do |t|
     t.string "name"
     t.string "text"
     t.integer "count", default: 0
-<<<<<<< HEAD
-=======
-    t.integer "score"
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
+    t.integer "score", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
