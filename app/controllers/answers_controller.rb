@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
 		@question=Question.find(@answer.question.id)
 		@answer.destroy
 		@question.update(count: @question.count-1)
-		redirect_to question_path(@question.id)
+		redirect_back(fallback_location: root_path)
 	end
 
 	def positiv_vote

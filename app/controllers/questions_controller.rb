@@ -36,12 +36,12 @@ class QuestionsController < ApplicationController
 
 	def update
 		@question.update(question_params)
-		redirect_to question_path(@question.id)
+		redirect_back(fallback_location: root_path)
 	end
 
 	def destroy
 		@question.destroy
-		redirect_to root_path
+		redirect_back(fallback_location: root_path)
 	end
 
 	def positiv_vote
