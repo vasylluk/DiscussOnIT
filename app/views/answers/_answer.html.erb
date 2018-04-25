@@ -8,15 +8,13 @@
 		<%=link_to negativ_vote_path(answer.id) do%>
 		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
 		<%end%>
-	</div>
-
-	<p>	
-	<%if answer.right %>
+			<%if answer.right %>
 		<%=link_to "Правильна" ,right_answer_path(answer.id)%>
 	<%else%>
 		<%=link_to "Підтвердити",right_answer_path(answer.id)%> 
 	<%end%>
-	</p>
+	</div>
+
 	<div class="col">
 	<%=answer.text.html_safe%>
 	<%=render Anscomment.where(answer_id: answer.id)%>
@@ -27,7 +25,7 @@
 			<%=render "anscomments/form", h:h%>
 		</b></small>
 		<%end%>
-	<small class="text-right text-dark float-right"><%=image_tag current_user.userparam.avatar.url, height:20%> <b class="align-bottom"><%=answer.user.nickname%></b></small>
+	<small class="text-right text-dark float-right"><%=image_tag answer.user.userparam.avatar.url, height:20%> <b class="align-bottom"><%=answer.user.nickname%></b></small>
 </div>
 </div>
 <hr>
