@@ -16,7 +16,6 @@ private
   def create_userparam
    	@userparam=Userparam.create(user_id: self.id)
    	@userparam.save
-    redirect_to edit_userparam_path(self.userparam.id)
   end
 
 end
