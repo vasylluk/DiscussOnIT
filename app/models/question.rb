@@ -16,12 +16,17 @@ class Question < ApplicationRecord
     end
 
     def all_categories=(names)
-    	self.categories = names.split(',').map do |name|
-            Category.where(name: name.strip).first_or_create!
+    	q = names.split(',').map do |name|
+                name.strip
+            end
+        q.delete("")
+        self.categories = q.map do |name|
+                Category.where(name: name).first_or_create!
+                
         end
     end
 
 
-        def question_update
-        end
+    def question_update
+    end
 end
