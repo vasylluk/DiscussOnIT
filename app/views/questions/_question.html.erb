@@ -5,6 +5,19 @@
 }
 </style>
 <div>
+<<<<<<< HEAD
+=======
+	<div class="col-1">
+		<%=link_to qpositiv_vote_path(question.id) do%>
+		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
+		<%end%>
+		<h3 class="text-center text-dark" style="margin: 0; margin-left: 2px;"><%=question.score%></h3>
+		<%=link_to qnegativ_vote_path(question.id) do%>
+		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
+		<%end%>
+	</div>
+
+>>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 	<h5>
 		<%=link_to question.name, question_path(question.id) %>
 		<span class="badge badge-primary" data-toggle="tooltip" title="Кількість відповідей"><%= question.count %></span>&emsp;—&emsp;<%=image_tag question.user.userparam.avatar.url, height:22%> <small><b class="text-secondary"><%= link_to question.user.nickname, userparam_path(question.user.userparam)%>

@@ -38,8 +38,13 @@ class AnswersController < ApplicationController
 	        	@vote.update(score: 1)
 	        end
 	    end
+<<<<<<< HEAD
 	    @answer.update(score: AnswerVote.where(answer: @answer.id).sum(:score))
 	    redirect_to question_path(@answer.question.id)
+=======
+	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
+	    redirect_back(fallback_location: root_path)
+>>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 	end
 
 	def negativ_vote
@@ -53,8 +58,13 @@ class AnswersController < ApplicationController
 	    	    @vote.update(score:-1)
 	        end
 	    end
+<<<<<<< HEAD
 	    @answer.update(score: AnswerVote.where(answer: @answer.id).sum(:score))
 	    redirect_to question_path(@answer.question.id)
+=======
+	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
+	    redirect_back(fallback_location: root_path)
+>>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 	end
 
 	def right
