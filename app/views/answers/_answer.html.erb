@@ -9,9 +9,11 @@
 		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
 		<%end%>
 	<%if answer.right %>
-		<%=link_to "Правильна" ,right_answer_path(answer.id)%>
+		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: lightgreen;"></span><%end%>
 	<%else%>
-		<%=link_to "Підтвердити",right_answer_path(answer.id)%> 
+		<%if current_user.id == answer.question.user.id%>
+		<%=link_to right_answer_path(answer.id)do%>Підтвердити<%end%>
+		<%end%>
 	<%end%>
 	</div>
 
