@@ -49,10 +49,6 @@ gem 'bootstrap', '~> 4.0.0'
 #моя прелесть
 gem 'country_select'
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 #tests show
 gem 'simplecov', require: false, group: :test
 group :development, :test do

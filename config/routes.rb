@@ -29,10 +29,7 @@ Rails.application.routes.draw do
   get "answers/:id/positiv_vote", to: "answers#positiv_vote", as:"positiv_vote"
   get "answers/:id/negativ_vote", to: "answers#negativ_vote", as:"negativ_vote"
 
-<<<<<<< HEAD
-=======
   get "questions/:id/qpositiv_vote", to: "questions#positiv_vote", as:"qpositiv_vote"
   get "questions/:id/qnegativ_vote", to: "questions#negativ_vote", as:"qnegativ_vote"
 
->>>>>>> d8d478cc919bde9fb16fdafd7e6e4d1f63d64487
 end
