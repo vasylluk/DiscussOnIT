@@ -9,7 +9,7 @@
 <h5><%=@userparam.country%></h5>
 <h5><%=@userparam.univ%></h5>
 <h5><%=@userparam.phone%></h5>
-<%if current_user== @userparam.user.id%>
+<%if current_user.id== @userparam.user.id%>
 <%=link_to "Редагувати профіль", edit_userparam_path(current_user.userparam.id)%>&nbsp;
 <%=link_to "Змінити вхідні дані", edit_user_registration_path%>
 <%end%>
