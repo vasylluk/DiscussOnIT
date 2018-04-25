@@ -17,12 +17,13 @@ class Question < ApplicationRecord
 
     def all_categories=(names)
     	q = names.split(',').map do |name|
-                name.strip
+                name.strip.downcase  
             end
         q.delete("")
-        self.categories = q.map do |name|
+
+        cat = q.to_set
+        self.categories = cat.map do |name|
                 Category.where(name: name).first_or_create!
-                
         end
     end
 
