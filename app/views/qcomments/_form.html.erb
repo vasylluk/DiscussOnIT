@@ -1,0 +1,23 @@
+<!-- Button trigger modal -->
+<b><a href="#" data-toggle="modal" data-target="#newQCommentModal"><%=t('comment')%></a></b>
+<!-- Modal -->
+<div class="modal fade" id="newQCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><%=t('new_comment')%></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	    <%= pp g.text_area :text, :class => "form-control", :rows => 8 %>
+		<%= tinymce %>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><%=t('cancel')%></button>
+        <%= g.submit t('submit'), :class=>"btn btn-sm btn-primary"%>
+      </div>
+    </div>
+  </div>
+</div>

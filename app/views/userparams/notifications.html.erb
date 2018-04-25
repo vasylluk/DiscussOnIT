@@ -1,0 +1,11 @@
+<h3>Сповіщення:</h3>
+<%@notifications.each do|notif|%>
+	<hr>
+	<%if notif.resource_type=="question"%>
+		<p><%=link_to Question.find(notif.resource_id).name , question_path(notif.resource_id)%><br>
+		<%= notif.text%></p>
+	<%end%>
+	<%if notif.resource_type=="base"%>
+		<%=notif.text%>
+	<%end%>
+<%end%>
