@@ -34,7 +34,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <p class="dropdown-item"><span class = "fa fa-user" style="color: lightgray;"></span>&nbsp;<%= link_to t('profile'), userparam_path(current_user.userparam.id)%></p>
-        <p class="dropdown-item"><span class = "fa fa-envelope " style="color: lightgray;"></span>&nbsp;<%= link_to "Сповіщення", notifications_path%></p>
+        <p class="dropdown-item"><span class = "fa fa-envelope " style="color: lightgray;"></span>&nbsp;<%= link_to "Сповіщення", notifications_path%><span class="badge badge-primary" data-toggle="tooltip" title="Кількість відповідей"><%= Notification.where(user_id: current_user.id, view: false).count%></span></p>
         <p class="dropdown-item"><span class = "fa fa-star" style="color: lightgray;"></span>&nbsp;<%= link_to "Закладки", chosens_path %></p>
         <hr>
         <p class="dropdown-item"><span class = "fa fa-sign-out" style="color: lightgray;"></span>&nbsp;<%= link_to t('sign_out'), destroy_user_session_path,method: :delete%></p>

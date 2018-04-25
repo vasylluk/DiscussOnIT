@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20180425030335) do
     t.string "resource_type"
     t.integer "resource_id"
     t.string "text"
+    t.boolean "view", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
