@@ -1,3 +1,3 @@
-<p>Назва: <%=link_to category.name, category_path(category.name) %></p>
-<p>Кількість питань: <%= Tag.where(category_id: category.id).count%></p>
-<hr>
+
+<%=link_to category.name, category_path(category.name) %>
+		<span class="badge badge-primary" data-toggle="tooltip" title="Кількість відповідей"><%= Tag.where(category_id: category.id).count%></span>&nbsp;
