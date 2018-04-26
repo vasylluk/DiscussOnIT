@@ -1,4 +1,6 @@
 <div class="row">
+<div class="col">	
+	<div class="row">
 
 <div class="col-2">
 <%=image_tag @userparam.avatar.url,width:100%>
@@ -10,6 +12,7 @@
 <%if @userparam.country!=nil%><h5><%=ISO3166::Country[@userparam.country].translations[I18n.locale.to_s]%></h5><%end%>
 <h5><%=@userparam.univ%></h5>
 <h5><%=@userparam.phone%></h5>
+<h5>Рейтинг: <%=@userparam.karma%></h5>
 <%if user_signed_in? && current_user.id == @userparam.user.id%>
 <%=link_to "Редагувати профіль", edit_userparam_path(current_user.userparam.id)%>&emsp;
 <%=link_to "Змінити дані для входу", edit_user_registration_path%>
@@ -25,4 +28,9 @@
 
 </div><%end%>
 
+</div>
+</div>
+<div class="col-12 col-md-3">
+	 <%= render "layouts/sidebar"%>
+</div>
 </div>

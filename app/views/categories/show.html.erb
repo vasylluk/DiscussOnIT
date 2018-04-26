@@ -2,10 +2,15 @@
 <div class="col">
 	<h1><%=@category.name%></h1>
 	<hr/>
+	<%if @posts !=[]%>
 	<h3><%=t(:posts)%></h3>
+
 	<%=render @posts%>
+	<%end%>
+	<%if @questions!=[]%>
 	<h3><%=t(:questions)%></h3>
 	<%=render @questions%>
+	<%end%>
 </div>
 <div class="col-12 col-md-3">
 	 <%= render "layouts/sidebar"%>

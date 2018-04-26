@@ -16,7 +16,7 @@
 		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: lightgrey;"><%end%>
 		<%end%>
 	<%end%>
-	</center>
+	</center> 
 	</div>
 
 	<div class="col">
@@ -29,7 +29,7 @@
 			<%=render "anscomments/form", h:h%>
 		</b></small>
 		<%end%>
-	<small class="text-right text-dark float-right"><%=image_tag answer.user.userparam.avatar.url, height:20%> <b class="align-bottom"><%=answer.user.nickname%></b></small><br/>
+	<small class="text-right text-dark float-right"><%=image_tag answer.user.userparam.avatar.url, height:20%> <b class="align-bottom"><%= link_to answer.user.nickname, userparam_path(answer.user.userparam)%></b></small><br/>
 	<%=render Anscomment.where(answer_id: answer.id)%>
 </div>
 
