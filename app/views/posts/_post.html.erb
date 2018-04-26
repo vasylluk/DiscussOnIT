@@ -4,6 +4,13 @@
 		<p style="font-size: 34px" align="center"><b><%=post.view%></b></p>
 
 		<hr>
+		<%=link_to positiv_vote_post_path(post.id) do%>
+		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
+		<%end%>
+		<h3 class="text-center text-dark" style="margin: 0; margin-left: 2px;"><%=post.score%></h3>
+		<%=link_to  negativ_vote_post_path(post.id) do%>
+		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
+		<%end%>
 	</div>
 	<div class="col">
 		<h5>
@@ -23,6 +30,7 @@
 				</p>
 			</div>
 		</p>
-		<hr/>
+		
 	</div>
 </div>
+<hr/>

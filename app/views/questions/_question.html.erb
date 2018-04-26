@@ -8,6 +8,10 @@
 
 <div class="row clearfix">
 	<div class="col-1">
+		Views:
+		<p style="font-size: 34px" align="center"><b><%=question.view%></b></p>
+
+		<hr>
 		<%=link_to qpositiv_vote_path(question.id) do%>
 		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
 		<%end%>

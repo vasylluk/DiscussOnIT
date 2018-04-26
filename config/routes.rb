@@ -37,8 +37,11 @@ Rails.application.routes.draw do
 
 
   resources :posts do
+    member do
+      get :positiv_vote
+      get :negativ_vote
+    end
     resources :postcomments , only:[:create,:update,:destroy]
   end
 
-  get '/:locale' => 'questions#index'
 end

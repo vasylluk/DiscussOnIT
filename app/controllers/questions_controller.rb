@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
 	def show
 		@answers=Answer.where(question_id: @question.id).order(right: :DESC,score: :DESC)
 		@qcomments=Qcomment.where(question_id: @question.id)
+		@question.update(view: @question.view+1)
 	end
 
 	def new
