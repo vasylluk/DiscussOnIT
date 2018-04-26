@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'postcomments/new'
+
   root to: 'questions#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :userparams,only:[:show,:edit,:update]
   get "notifications", to: "userparams#notifications", as:"notifications"
+  get "notif_delet", to: "userparams#notif_delet",as:"notif_delet"
   get "chosens", to:"questions#chosens",as:"chosens"
 
 
@@ -32,4 +35,10 @@ Rails.application.routes.draw do
   get "questions/:id/qpositiv_vote", to: "questions#positiv_vote", as:"qpositiv_vote"
   get "questions/:id/qnegativ_vote", to: "questions#negativ_vote", as:"qnegativ_vote"
 
+
+  resources :posts do
+    resources :postcomments , only:[:create,:update,:destroy]
+  end
+
+  get '/:locale' => 'questions#index'
 end

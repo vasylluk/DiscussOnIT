@@ -12,7 +12,7 @@ class Answer < ApplicationRecord
     		@chosens = ChosenQuestion.where(question_id: self.question.id)
     		@chosens.each do |chose|
     			#if chose.user_id != current_user.id
-    			@noti = Notification.create(user_id: chose.user_id,resource_type:"question", text: "New answer to question "+self.question.name, resource_id:self.question.id)
+    			@noti = Notification.create(user_id: chose.user_id,resource_type:"question", text: "New answer to question ", resource_id:self.question.id)
     			@noti.save
     			#end
     		end

@@ -9,7 +9,11 @@ class User < ApplicationRecord
    	has_one :userparam, dependent: :destroy
 
   	has_many :questions,dependent: :destroy
+    has_many :qcomments,dependent: :destroy
   	has_many :answers,dependent: :destroy
+    has_many :anscomment,dependent: :destroy
+
+    has_many :posts,dependent: :destroy
 
 private
 

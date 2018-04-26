@@ -16,7 +16,12 @@ class UserparamsController < ApplicationController
 	end
 
 	def notifications
-		@notifications = Notification.where(user_id: current_user.id)
+		@notifications = Notification.where(user_id: current_user.id).order(created_at: :DESC)
+	end
+
+	def notif_delet
+		@notifications = Notification.where(user_id: current_user.id).map { |e|  e.delete }
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

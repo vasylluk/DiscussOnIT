@@ -3,30 +3,15 @@ class Question < ApplicationRecord
 
 	belongs_to :user
 
-	has_many :tags
-	has_many :categories, through: :tags
 	has_many :answers, dependent: :destroy
 	has_many :chosen_questions, dependent: :destroy
 	has_many :qcomments, dependent: :destroy
 
     validates :name, :text, presence: true
 
-    def all_categories
-    	self.categories.map(&:name).join(', ')
+    def all_tags
+    	Tag.where(resource_type: self.class.name, resource_id: self.id).map{|tag| tag = Category.find(tag.category_id)}.map(&:name).join(', ')
     end
-
-    def all_categories=(names)
-    	q = names.split(',').map do |name|
-                name.strip.downcase  
-            end
-        q.delete("")
-
-        cat = q.to_set
-        self.categories = cat.map do |name|
-                Category.where(name: name).first_or_create!
-        end
-    end
-
 
     def question_update
     end

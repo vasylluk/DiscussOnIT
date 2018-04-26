@@ -5,6 +5,7 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
       t.string :resource_type
       t.integer :resource_id
       t.string :text
+      t.boolean :view , default: false
 
       t.timestamps
     end
