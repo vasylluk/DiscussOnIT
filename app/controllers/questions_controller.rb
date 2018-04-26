@@ -49,6 +49,8 @@ class QuestionsController < ApplicationController
 	def positiv_vote
 		if current_user.id != @question.user.id
 		@vote=QuestionVote.where(user_id: current_user.id,question_id: @question.id).first
+		@user=Userparam.find(@question.user.userparam.id)
+		@user.update(karma: @user.karma-@question.score)
 		if @vote==nil
 		    @vote=QuestionVote.create(user_id: current_user.id, question_id: @question.id, score: 1)
 	    else
@@ -59,6 +61,8 @@ class QuestionsController < ApplicationController
 	        end
 	    end
 	    @question.update(score: QuestionVote.where(question_id: @question.id).sum(:score))
+	    @user.update(karma: @user.karma+@question.score)
+	   	@question.user.save
 		end
 	    redirect_back(fallback_location: root_path)
 	end
@@ -66,6 +70,8 @@ class QuestionsController < ApplicationController
 	def negativ_vote
 		if current_user.id != @question.user.id
 		@vote=QuestionVote.where(user_id: current_user.id,question_id: @question.id).first
+		@user=Userparam.find(@question.user.userparam.id)
+		@user.update(karma: @user.karma-@question.score)
 		if @vote==nil
 		    @vote=QuestionVote.create(user_id: current_user.id, question_id: @question.id, score: -1)
 	    else
@@ -76,6 +82,8 @@ class QuestionsController < ApplicationController
 	        end
 	    end
 	    @question.update(score: QuestionVote.where(question_id: @question.id).sum(:score))
+	    @user.update(karma: @user.karma+@question.score)
+	    @question.user.save
 		end
 	    redirect_back(fallback_location: root_path)
 	end

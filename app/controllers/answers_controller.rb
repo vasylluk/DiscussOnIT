@@ -10,7 +10,6 @@ class AnswersController < ApplicationController
 			@answer=Answer.create(answer_params)
 			if @answer.save
        			@question.update(count: @question.count+1)
-       			NotificationMailer.with(user: @question.user,text: "hellow qr code").answer_email.deliver_now
 				redirect_to question_path(@answer.question.id)
 			else
 				render 'form'
@@ -36,6 +35,8 @@ class AnswersController < ApplicationController
 	def positiv_vote
 		if current_user.id != @answer.user.id
 		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
+		@user=Userparam.find(@answer.user.userparam.id)
+		@user.update(karma: @user.karma-@answer.score)
 		if @vote==nil
 		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: 1)
 	    else
@@ -47,6 +48,8 @@ class AnswersController < ApplicationController
 	    end
 
 	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
+	    @user.update(karma: @user.karma+@answer.score)
+	   	@user.save
 	    end
 	    redirect_back(fallback_location: root_path)
 	end
@@ -54,6 +57,8 @@ class AnswersController < ApplicationController
 	def negativ_vote
 		if current_user.id != @answer.user.id
 		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
+		@user=Userparam.find(@answer.user.userparam.id)
+		@user.update(karma: @user.karma-@answer.score)
 		if @vote==nil
 		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: -1)
 	    else
@@ -65,6 +70,8 @@ class AnswersController < ApplicationController
 	    end
 
 	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
+	    @user.update(karma: @user.karma+@answer.score)
+	    @user.save
 		end
 	    redirect_back(fallback_location: root_path)
 
@@ -74,10 +81,13 @@ class AnswersController < ApplicationController
 	def right
 		
 		if @answer.question.user.id== current_user.id
+			@user=Userparam.find(@answer.user.userparam.id)
 			if @answer.right
 			@answer.update(right: false)
+			@user.update(karma: @user.karma-100)
 			else
 			@answer.update(right: true)
+			@user.update(karma: @user.karma+100)
 			end
 			@answer.save
 		end
