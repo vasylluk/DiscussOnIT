@@ -1,2 +1,28 @@
-<%=link_to "Create new post" , new_post_path, class:"btn btn-primary" %>
+<div class="row">
+<div class="col">	
+<div class="row">
+	<div class="col">
+	<ul class="nav">
+	  <span class="navbar-text font-weight-bold">
+	  	All Posts
+	  </span>
+	</ul>
+	</div>
+<!--  separator  -->	
+	<div class="col">
+	<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%=link_to "New Post", new_post_path, class:"btn btn-primary" %>
+  </li>
+</ul>
+
+</div>
+</div>
+<hr>
+
 <%=render @posts%>
+</div>
+<div class="col-12 col-md-3">
+	 <%= render "layouts/sidebar"%>
+</div>
+</div>

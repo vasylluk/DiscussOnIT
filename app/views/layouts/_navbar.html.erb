@@ -2,10 +2,15 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
       <%=link_to root_path , class:"navbar-brand" do%>
-        <%= image_tag "logo.svg" , height: 40  %>
+        DiscussOnIT
       <%end%>
+
     <li class="nav-item">
-      <%=link_to "COmunity" , posts_path, class:"btn btn-prime"%>
+      <%=link_to "Questions" , questions_path, class:"nav-link"%>
+    </li>
+
+    <li class="nav-item">
+      <%=link_to "Community" , posts_path, class:"nav-link"%>
     </li>
 
     </ul>

@@ -34,4 +34,6 @@ Rails.application.routes.draw do
 
 
   resources :posts
+
+  get '/:locale' => 'questions#index'
 end
