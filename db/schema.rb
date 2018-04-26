@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20180426072045) do
     t.string "title"
     t.string "body"
     t.integer "user_id"
+    t.integer "view", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,7 +2,7 @@
 
 <h1><%= @post.title%>
 	<%if user_signed_in? && current_user.id==@post.user.id%>
-		<%=link_to "", edit_question_path(@post.id), class:"fa fa-pencil" , style:"text-decoration: none;"%>
+		<%=link_to "", edit_post_path(@post.id), class:"fa fa-pencil" , style:"text-decoration: none;"%>
 	<%end%>
 </h1>
 <div><%= sanitize @post.body%></div>

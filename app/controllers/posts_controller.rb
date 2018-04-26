@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   	end
 
   	def show
+      @post.update(view: @post.view+1)
   		@postcomments= Postcomment.where(post_id: @post.id)
   	end
 
