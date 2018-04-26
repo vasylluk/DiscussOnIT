@@ -1,7 +1,16 @@
 
 
-<h1><%= @post.title%></h1>
+<h1><%= @post.title%>
+	<%if user_signed_in? && current_user.id==@post.user.id%>
+		<%=link_to "", edit_question_path(@post.id), class:"fa fa-pencil" , style:"text-decoration: none;"%>
+	<%end%>
+</h1>
 <div><%= sanitize @post.body%></div>
 <div>
 <%= raw Tag.new.all_tags_w(@post).map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
 </div>
+<%=form_for :postcomment,  url:post_postcomments_path(@post.id) do |p| %>
+<%=render "/postcomments/form", p:p %>
+<%end%>
+
+<%=render @postcomments%>

@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   	end
 
   	def show
-  		
+  		@postcomments= Postcomment.where(post_id: @post.id)
   	end
 
   	def edit
