@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   		params[:post][:user_id]=current_user.id
   		@tags=params[:post][:all_tags]
   		@post=Post.create(post_params)
-  		@post.all_tags=(@tags)
+  		Tag.new.all_tags_c(@post,@tags)
   		if @post.save
   			redirect_to post_path(@post.id)
   		else
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   	end
 
   	def update
-  		@post.all_tags=(params[:post][:all_tags])
+  		Tag.new.all_tags_c(@post,params[:post][:all_tags])
   		@post.update(post_params)
   		redirect_to post_path(@post.id)
   	end

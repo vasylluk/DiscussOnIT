@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
 		params[:question][:user_id]=current_user.id
 		@tags=params[:question][:all_tags]
 		@question=Question.create(question_params)
-		@question.all_tags=(@tags)
+		Tag.new.all_tags_c(@question,@tags)
 		if @question.save
 			ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
 			redirect_to question_path(@question.id)
@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
 	end
 
 	def update
-		@question.all_tags=(params[:question][:all_tags])
+		Tag.new.all_tags_c(@question,params[:question][:all_tags])
 		@question.update(question_params)
 
 		redirect_to question_path(@question.id)

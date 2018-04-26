@@ -1,5 +1,5 @@
 <hr>
 <h4><%=link_to post.title, post_path(post.id)%></h4>
 <p> 
-<%= raw Tag.where(resource_id: post.id, resource_type: "post").map{|tag| tag = Category.find(tag.category_id)}.map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
+<%= raw Tag.new.all_tags_w(post).map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
 </p>
