@@ -14,13 +14,15 @@ class PostcommentsController < ApplicationController
 	end
 
 	def update
-		@postcomment.update(postcomment_params)
+		if @postcomment.user.id == current_user.id
+			@postcomment.update(postcomment_params)
+		end
 		redirect_to post_path(@postcomment.post.id)
 	end
 
 	def destroy
-		if current_user.id==@postcomment.user.id
-		@postcomment.destroy
+		if @postcomment.user.id == current_user.id
+			@postcomment.destroy
 		end
 		redirect_back(fallback_location: root_path)
 	end

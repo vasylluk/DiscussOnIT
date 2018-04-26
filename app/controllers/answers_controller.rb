@@ -21,14 +21,18 @@ class AnswersController < ApplicationController
 	end
 
 	def update
-		@answer.update(answer_params)
+		if @answer.user.id == current_user.id
+			@answer.update(answer_params)
+		end
 		redirect_to question_path(@answer.question.id)
 	end
 
 	def destroy
-		@question=Question.find(@answer.question.id)
-		@answer.destroy
-		@question.update(count: @question.count-1)
+		if @answer.user.id == current_user.id
+			@question=Question.find(@answer.question.id)
+			@answer.destroy
+			@question.update(count: @question.count-1)
+		end
 		redirect_back(fallback_location: root_path)
 	end
 

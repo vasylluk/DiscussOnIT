@@ -11,7 +11,9 @@ class UserparamsController < ApplicationController
 	end
 
 	def update
-		@userparam.update(userparam_params)
+		if @userparam.user.id == current_user.id
+			@userparam.update(userparam_params)
+		end
 		redirect_to userparam_path(@userparam.id)
 	end
 

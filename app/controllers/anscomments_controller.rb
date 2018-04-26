@@ -14,13 +14,15 @@ class AnscommentsController < ApplicationController
 	end
 
 	def update
-		@anscommet.update(anscomment_params)
+		if @anscomment.user.id == current_user.id
+			@anscommet.update(anscomment_params)
+		end
 		redirect_back(fallback_location: root_path)
 	end
 
 	def destroy
-		if current_user.id == @anscomment.user.id
-		@anscomment.destroy
+		if @anscomment.user.id == current_user.id
+			@anscomment.destroy
 		end
 		redirect_back(fallback_location: root_path)
 	end

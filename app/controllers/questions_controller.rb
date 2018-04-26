@@ -35,14 +35,17 @@ class QuestionsController < ApplicationController
 	end
 
 	def update
-		Tag.new.all_tags_c(@question,params[:question][:all_tags])
-		@question.update(question_params)
-
+		if @question.user.id = current_user.id
+			Tag.new.all_tags_c(@question,params[:question][:all_tags])
+			@question.update(question_params)
+		end
 		redirect_to question_path(@question.id)
 	end
 
 	def destroy
-		@question.destroy
+		if @question.user.id = current_user.id
+			@question.destroy
+		end
 		redirect_back(fallback_location: root_path)
 	end
 

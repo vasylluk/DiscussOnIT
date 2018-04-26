@@ -32,13 +32,17 @@ class PostsController < ApplicationController
   	end
 
   	def update
-  		Tag.new.all_tags_c(@post,params[:post][:all_tags])
-  		@post.update(post_params)
+      if @post.user.id == current_user.id
+  		  Tag.new.all_tags_c(@post,params[:post][:all_tags])
+  		  @post.update(post_params)
+      end
   		redirect_to post_path(@post.id)
   	end
 
   	def destroy
-  		@post.destroy
+      if @post.user.id == current_user.id
+  		  @post.destroy
+      end
   		redirect_to root_path
   	end
 
