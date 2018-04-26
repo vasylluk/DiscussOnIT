@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :authenticate_user!, except:[:index,:show]
-	before_action :get_post, only:[:show,:edit,:update,:destroy]
+	before_action :get_post, only:[:show,:edit,:update,:destroy,:positiv_vote,:negativ_vote]
 
 	def index
 		@posts=Post.all
@@ -41,6 +41,40 @@ class PostsController < ApplicationController
   		@post.destroy
   		redirect_to root_path
   	end
+
+    def positiv_vote
+    if current_user.id != @post.user.id
+    @vote=PostVote.where(user_id: current_user.id,post_id: @post.id).first
+    if @vote==nil
+        @vote=PostVote.create(user_id: current_user.id, post_id: @post.id, score: 1)
+      else
+        if @vote.score == -1
+            @vote.update(score: 0)
+          else
+            @vote.update(score: 1)
+          end
+      end
+      @post.update(score: PostVote.where(post_id: @post.id).sum(:score))
+    end
+      redirect_back(fallback_location: root_path)
+  end
+
+  def negativ_vote
+    if current_user.id != @post.user.id
+    @vote=PostVote.where(user_id: current_user.id,post_id: @post.id).first
+    if @vote==nil
+        @vote=PostVote.create(user_id: current_user.id, post_id: @post.id, score: -1)
+      else
+        if @vote.score == 1
+            @vote.update(score: 0)
+          else
+            @vote.update(score: -1)
+          end
+      end
+      @post.update(score: PostVote.where(post_id: @post.id).sum(:score))
+    end
+      redirect_back(fallback_location: root_path)
+  end
 
   	private
 

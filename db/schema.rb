@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426072045) do
+ActiveRecord::Schema.define(version: 20180426090415) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(version: 20180426072045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "post_votes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "score", default: 0
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "postcomments", force: :cascade do |t|
     t.string "text"
     t.integer "user_id"
@@ -106,6 +114,7 @@ ActiveRecord::Schema.define(version: 20180426072045) do
     t.string "body"
     t.integer "user_id"
     t.integer "view", default: 0
+    t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -132,6 +141,7 @@ ActiveRecord::Schema.define(version: 20180426072045) do
     t.integer "count", default: 0
     t.integer "score", default: 0
     t.integer "user_id"
+    t.integer "view", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

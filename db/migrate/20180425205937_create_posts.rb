@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.1]
       t.string :body
       t.integer :user_id
       t.integer :view ,default: 0
+      t.integer :score ,default: 0
 
       t.timestamps
     end
