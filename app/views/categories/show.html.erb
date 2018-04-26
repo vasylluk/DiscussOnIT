@@ -2,9 +2,9 @@
 <div class="col">
 	<h1><%=@category.name%></h1>
 	<hr/>
-	<h3>Posts</h3>
+	<h3><%=t(:posts)%></h3>
 	<%=render @posts%>
-	<h3>Questions</h3>
+	<h3><%=t(:questions)%></h3>
 	<%=render @questions%>
 </div>
 <div class="col-12 col-md-3">

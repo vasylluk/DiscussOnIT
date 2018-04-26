@@ -4,7 +4,7 @@
 	<div class="col">
 	<ul class="nav">
 	  <span class="navbar-text font-weight-bold">
-	  	All Posts
+	  	<%= t(:all_post)%>
 	  </span>
 	</ul>
 	</div>
@@ -12,7 +12,7 @@
 	<div class="col">
 	<ul class="nav justify-content-end">
   <li class="nav-item">
-    <%=link_to "New Post", new_post_path, class:"btn btn-primary" %>
+    <%=link_to t(:new_post), new_post_path, class:"btn btn-primary" %>
   </li>
 </ul>
 
