@@ -19,7 +19,8 @@ uk:
   answer: "Відповісти"
   cancel: "Скасувати"
   new_comment: "Новий коментарій"
-
+  notifications: "Сповіщення"
+  notif_delet: "Видалити усі сповіщення"
   sign_in: "Увійти"
   sign_up: "Зареєструватись"
   sign_out: "Вийти"

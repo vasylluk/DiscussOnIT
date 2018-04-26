@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :userparams,only:[:show,:edit,:update]
   get "notifications", to: "userparams#notifications", as:"notifications"
+  get "notif_delet", to: "userparams#notif_delet",as:"notif_delet"
   get "chosens", to:"questions#chosens",as:"chosens"
 
 

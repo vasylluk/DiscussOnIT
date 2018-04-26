@@ -19,7 +19,8 @@ en:
   answer: "Answer"
   cancel: "Cancel"
   new_comment: "New comment"
-
+  notifications: "Notifications"
+  notif_delet: "Delete all"
   sign_in: "Sign In"
   sign_up: "Sign Up"
   sign_out: "Sign Out"
