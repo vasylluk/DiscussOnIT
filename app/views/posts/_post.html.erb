@@ -1,16 +1,28 @@
+<div class="row clearfix">
+	<div class="col-1">
+		Views:
+		<p style="font-size: 34px" align="center"><b><%=post.view%></b></p>
 
-<h5>
-	<%=link_to post.title, post_path(post.id) %>
-	&emsp;—&emsp;<%=image_tag post.user.userparam.avatar.url, height:22%> <small><b class="text-secondary"><%= link_to post.user.nickname, userparam_path(post.user.userparam)%>
-	</b></small>
-</h5>
-<p>
-	<%=strip_tags(post.body)[0..255]%>...
-	<br>
-	<div><p> 
-			<%= raw Tag.new.all_tags_w(post).map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
-		</p>
-		
+		<hr>
 	</div>
-</p>
-<hr/>
+	<div class="col">
+		<h5>
+			<%=link_to post.title, post_path(post.id) %>
+			&emsp;Автор:&emsp;<%=image_tag post.user.userparam.avatar.url, height:22%> 
+			<small>
+				<b class="text-secondary"><%= link_to post.user.nickname, userparam_path(post.user.userparam)%>
+				</b>
+			</small>
+		</h5>
+		<p>
+			<%=strip_tags(post.body)[0..255]%>...
+			<br>
+			<div>
+				<p> 
+					<%= raw Tag.new.all_tags_w(post).map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
+				</p>
+			</div>
+		</p>
+		<hr/>
+	</div>
+</div>

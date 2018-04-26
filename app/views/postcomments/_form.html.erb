@@ -11,12 +11,12 @@
         </button>
       </div>
       <div class="modal-body">
-	    <%= g.text_area :text, :class => "form-control", :rows => 8 %>
+	    <%= p.text_area :text, :class => "form-control", :rows => 8 %>
 		<%= tinymce %>
 	  </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><%=t('cancel')%></button>
-        <%= g.submit t('submit'), :class=>"btn btn-sm btn-primary"%>
+        <%= p.submit t('submit'), :class=>"btn btn-sm btn-primary"%>
       </div>
     </div>
   </div>

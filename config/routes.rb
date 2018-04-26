@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'postcomments/new'
+
   root to: 'questions#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -34,7 +36,9 @@ Rails.application.routes.draw do
   get "questions/:id/qnegativ_vote", to: "questions#negativ_vote", as:"qnegativ_vote"
 
 
-  resources :posts
+  resources :posts do
+    resources :postcomments , only:[:create,:update,:destroy]
+  end
 
   get '/:locale' => 'questions#index'
 end
