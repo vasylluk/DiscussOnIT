@@ -17,14 +17,12 @@
 </ul>
 
 </div>
-<div style="margin-right: 10px;">
-    <form class="form-inline my-2 my-lg-0">
-      <%= search_form_for @q do |k| %>
-      <%= k.label "Знайти: " %>
-      <%= k.search_field :name_or_text_cont %>
-      <%= k.submit "Шукати", class:"btn btn-info"%>
-      <% end %>
-    </form>
+<div>
+  <%= search_form_for @q do |k| %>
+  <%= k.label "Знайти: " %>
+  <%= k.search_field :name_or_text_cont %>
+  <%= k.submit "Шукати", class:"btn btn-info"%>
+<% end %>
 </div>
 </div>
 <hr>
