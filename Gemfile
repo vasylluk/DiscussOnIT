@@ -49,7 +49,8 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'country_select'
 
 gem 'pg'
-
+#search gem
+gem 'ransack'
 
 #tests show
 gem 'simplecov', require: false, group: :test
