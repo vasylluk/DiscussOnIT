@@ -17,6 +17,13 @@
 </ul>
 
 </div>
+<div>
+  <%= search_form_for @q do |k| %>
+  <%= k.label "Знайти: " %>
+  <%= k.search_field :name_or_text_cont %>
+  <%= k.submit "Шукати", class:"btn btn-info"%>
+<% end %>
+</div>
 </div>
 <hr>
 

@@ -326,6 +326,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.5)
   rails-i18n (~> 5.1)
+  ransack
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver
