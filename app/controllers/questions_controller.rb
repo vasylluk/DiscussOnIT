@@ -97,17 +97,13 @@ class QuestionsController < ApplicationController
 		    @chosen.delete
 		else
 		   @chosen=ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
+		   @chosen.save
+		   @noti = Notification.create(user_id: @question.user.id, resource_type: @question.class.name, text: "New user Choosen your  question ", resource_id: @question.id)
+        	@noti.save
 		end
 		redirect_to question_path(@question.id)
 	end
 
-	def chosens
-		@questions=[]
-		ChosenQuestion.where(user_id: current_user.id).each do |chosen|
-			@questions<<chosen.question
-		end
-
-	end
 
 	private
 
