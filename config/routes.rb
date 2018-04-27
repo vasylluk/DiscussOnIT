@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-
-  root to: 'questions#index'
+  root to: 'pages#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
+  
   resources :userparams,only:[:show,:edit,:update]
   get "notifications", to: "userparams#notifications", as:"notifications"
   get "notif_delet", to: "userparams#notif_delet",as:"notif_delet"

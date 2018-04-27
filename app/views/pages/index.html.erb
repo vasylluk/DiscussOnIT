@@ -1,0 +1,18 @@
+<div class="col">
+	<ul class="nav">
+	  <span class="navbar-text font-weight-bold">
+	  	<%=link_to t('all_questions'), questions_path %>
+	  </span>
+	</ul>
+</div>
+<hr>
+<%= render @questions%>
+<div class="col">
+	<ul class="nav">
+	  <span class="navbar-text font-weight-bold">
+	  	<%=link_to t(:all_post), posts_path%>
+	  </span>
+	</ul>
+</div>
+<hr>
+<%= render @posts%>

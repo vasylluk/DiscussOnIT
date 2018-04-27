@@ -15,14 +15,6 @@
     <%=link_to t('new_question'), new_question_path, class:"btn btn-primary" %>
   </li>
 </ul>
-
-</div>
-<div>
-  <%= search_form_for @q do |k| %>
-  <%= k.label "Знайти: " %>
-  <%= k.search_field :name_or_text_cont %>
-  <%= k.submit "Шукати", class:"btn btn-info"%>
-<% end %>
 </div>
 </div>
 <hr>

@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 20180427184440) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.string "body"
+    t.string "name"
+    t.string "text"
     t.integer "user_id"
     t.integer "view", default: 0
     t.integer "score", default: 0

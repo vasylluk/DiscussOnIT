@@ -3,7 +3,7 @@ class Post < ApplicationRecord
 
 	has_many :postcomments
 
-	validates :title, :body, presence: true
+	validates :name, :text, presence: true
 
 	def all_tags
     	Tag.where(resource_type: self.class.name, resource_id: self.id).map{|tag| tag = Category.find(tag.category_id)}.map(&:name).join(', ')

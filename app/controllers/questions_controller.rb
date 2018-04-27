@@ -3,8 +3,7 @@ class QuestionsController < ApplicationController
 	before_action :set_question, only:[:show,:edit,:update,:destroy,:chosen,:positiv_vote,:negativ_vote]
 
 	def index
-	    @q = Question.ransack(params[:q])
-	    @questions = @q.result(distinct: true)
+		@questions= Question.all
 	end
 
 	def show

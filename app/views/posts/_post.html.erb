@@ -14,7 +14,7 @@
 	</div>
 	<div class="col">
 		<h5>
-			<%=link_to post.title, post_path(post.id) %>
+			<%=link_to post.name, post_path(post.id) %>
 			&emsp;Автор:&emsp;<%=image_tag post.user.userparam.avatar.url, height:22%> 
 			<small>
 				<b class="text-secondary"><%= link_to post.user.nickname, userparam_path(post.user.userparam)%>
@@ -22,7 +22,7 @@
 			</small>
 		</h5>
 		<p>
-			<%=strip_tags(post.body)[0..255]%>...
+			<%=strip_tags(post.text)[0..255]%>...
 			<br>
 			<div>
 				<p> 

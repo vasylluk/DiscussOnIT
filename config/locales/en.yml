@@ -9,6 +9,7 @@ en:
   profile: "Profile"
   tags: "Tags"
   search: "Search"
+  find: "Find:"
   enter_cst: "Enter tags, separated by comma"
   caption: "Caption"
   title: "Title"
