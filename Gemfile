@@ -45,8 +45,10 @@ gem 'jquery-rails'
 
 gem 'bootstrap', '~> 4.0.0'
 
-#моя прелесть
+#Вибір країни
 gem 'country_select'
+#По-сторінковий вивід
+gem 'will_paginate'
 
 gem 'pg'
 #search gem

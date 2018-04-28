@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 	before_action :get_post, only:[:show,:edit,:update,:destroy,:positiv_vote,:negativ_vote]
 
 	def index
-		@posts=Post.all
+		@posts=Post.paginate(page: params[:page], per_page: 10)
 	end
 
   	def new
