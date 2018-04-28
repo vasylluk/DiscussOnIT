@@ -10,10 +10,21 @@ class User < ApplicationRecord
 
   	has_many :questions,dependent: :destroy
     has_many :qcomments,dependent: :destroy
+    has_many :question_votes,dependent: :destroy
+    has_many :chosen_questions,dependent: :destroy
   	has_many :answers,dependent: :destroy
-    has_many :anscomment,dependent: :destroy
+    has_many :anscomments,dependent: :destroy
+    has_many :answer_votes,dependent: :destroy
+
 
     has_many :posts,dependent: :destroy
+    has_many :postcommets,dependent: :destroy
+    has_many :post_votes,dependent: :destroy
+
+    has_many :reports,dependent: :destroy
+
+    has_many :notifications,dependent: :destroy
+
 
 private
 
