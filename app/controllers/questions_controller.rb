@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
 	before_action :set_question, only:[:show,:edit,:update,:destroy,:chosen,:positiv_vote,:negativ_vote]
 
 	def index
-		@questions= Question.paginate(page: params[:page], per_page: 10)
+		@questions = Question.all.page(params[:page]).per(10)
 	end
 
 	def show
@@ -45,48 +45,6 @@ class QuestionsController < ApplicationController
 			@question.destroy
 		end
 		redirect_back(fallback_location: root_path)
-	end
-
-	def positiv_vote
-		if current_user.id != @question.user.id
-		@vote=QuestionVote.where(user_id: current_user.id,question_id: @question.id).first
-		@user=Userparam.find(@question.user.userparam.id)
-		@user.update(karma: @user.karma-@question.score)
-		if @vote==nil
-		    @vote=QuestionVote.create(user_id: current_user.id, question_id: @question.id, score: 1)
-	    else
-	    	if @vote.score == -1
-	    	    @vote.update(score: 0)
-	        else
-	        	@vote.update(score: 1)
-	        end
-	    end
-	    @question.update(score: QuestionVote.where(question_id: @question.id).sum(:score))
-	    @user.update(karma: @user.karma+@question.score)
-	   	@question.user.save
-		end
-	    redirect_back(fallback_location: root_path)
-	end
-
-	def negativ_vote
-		if current_user.id != @question.user.id
-		@vote=QuestionVote.where(user_id: current_user.id,question_id: @question.id).first
-		@user=Userparam.find(@question.user.userparam.id)
-		@user.update(karma: @user.karma-@question.score)
-		if @vote==nil
-		    @vote=QuestionVote.create(user_id: current_user.id, question_id: @question.id, score: -1)
-	    else
-	    	if @vote.score == 1
-	    	    @vote.update(score: 0)
-	        else
-	        	@vote.update(score: -1)
-	        end
-	    end
-	    @question.update(score: QuestionVote.where(question_id: @question.id).sum(:score))
-	    @user.update(karma: @user.karma+@question.score)
-	    @question.user.save
-		end
-	    redirect_back(fallback_location: root_path)
 	end
 
 	def chosen

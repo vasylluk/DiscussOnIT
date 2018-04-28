@@ -48,7 +48,7 @@ gem 'bootstrap', '~> 4.0.0'
 #Вибір країни
 gem 'country_select'
 #По-сторінковий вивід
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'pg'
 #search gem

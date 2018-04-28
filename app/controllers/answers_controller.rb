@@ -36,52 +36,6 @@ class AnswersController < ApplicationController
 		redirect_back(fallback_location: root_path)
 	end
 
-	def positiv_vote
-		if current_user.id != @answer.user.id
-		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
-		@user=Userparam.find(@answer.user.userparam.id)
-		@user.update(karma: @user.karma-@answer.score)
-		if @vote==nil
-		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: 1)
-	    else
-	    	if @vote.score == -1
-	    	    @vote.update(score: 0)
-	        else
-	        	@vote.update(score: 1)
-	        end
-	    end
-
-	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
-	    @user.update(karma: @user.karma+@answer.score)
-	   	@user.save
-	    end
-	    redirect_back(fallback_location: root_path)
-	end
-
-	def negativ_vote
-		if current_user.id != @answer.user.id
-		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
-		@user=Userparam.find(@answer.user.userparam.id)
-		@user.update(karma: @user.karma-@answer.score)
-		if @vote==nil
-		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: -1)
-	    else
-	    	if @vote.score == 1
-	    	    @vote.update(score: 0)
-	    	else
-	    	    @vote.update(score:-1)
-	        end
-	    end
-
-	    @answer.update(score: AnswerVote.where(answer_id: @answer.id).sum(:score))
-	    @user.update(karma: @user.karma+@answer.score)
-	    @user.save
-		end
-	    redirect_back(fallback_location: root_path)
-
-
-	end
-
 	def right
 		
 		if @answer.question.user.id== current_user.id
