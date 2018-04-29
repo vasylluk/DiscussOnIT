@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
     after_update :question_update
-    before_destroy  :question_destroy
+    before_destroy :question_destroy
     
 	belongs_to :user
 
@@ -27,6 +27,11 @@ class Question < ApplicationRecord
         def question_destroy
             Vote.where(resource_type: self.class.name, resource_id: self.id).each do |vote|
                 vote.destroy()
+            end
+            @chosens = ChosenQuestion.where(question_id: self.id)
+            @chosens.each do |chose|
+                @noti = Notification.create(user_id: chose.user.id, resource_type:self.class.name, text: "Delet question ", resource_id:self.id)
+                @noti.save
             end
         end
 
