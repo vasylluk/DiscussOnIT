@@ -29,17 +29,19 @@ class VotesController < ApplicationController
 			if @vote==nil
 		    	@vote=Vote.create(user_id: current_user.id,resource_type: @object.class.name,resource_id: @object.id,score: -1)
 		    else
-	    		@object.update(score: @object.score-@vote.score)
-	    		@user.update(karma: @user.karma-@vote.score)
+	    		@object.score-=@vote.score
+	    		@user.karma-=@vote.score
 		    	if @vote.score == 1
 		    	    @vote.update(score: 0)
 	    	    else
 	        		@vote.update(score: -1)
 		        end
 		    end
-		   	@object.update(score: @object.score+@vote.score)
-		    #@object.update(score: Vote.where(resource_type: @object.class.name,resource_id: @object.id).sum(:score))
-		   	@user.update(karma: @user.karma+@vote.score)
+	    	@object.score+=@vote.score
+	    	@object.save
+	    	@user.karma+=@vote.score
+	    	@user.save
+	    	#@object.update(score: Vote.where(resource_type: @object.class.name,resource_id: @object.id).sum(:score))
 		end
 	    redirect_back(fallback_location: root_path)
 	end
