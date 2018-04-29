@@ -1,6 +1,7 @@
 class Answer < ApplicationRecord
 	after_create :answer_create
     after_update :answer_update
+    before_destroy :answer_destroy
 
 	belongs_to :question
 	belongs_to :user
@@ -26,4 +27,11 @@ class Answer < ApplicationRecord
               @noti.save
             end
         end
+
+        def answer_destroy
+            Vote.where(resource_type: self.class.name, resource_id: self.id).each do |vote|
+                vote.destroy()
+            end
+        end
+        
 end

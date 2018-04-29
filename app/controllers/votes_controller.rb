@@ -7,7 +7,7 @@ class VotesController < ApplicationController
 			@vote=Vote.find_by(user_id: current_user.id,resource_type: @object.class.name,resource_id: @object.id)
 		if @vote==nil
 			@vote=Vote.create(user_id: current_user.id,resource_type: @object.class.name,resource_id: @object.id,score: 1)
-	    else
+	    else	
 	    	if @vote.score == -1
 	    	    @vote.update(score: 0)
 	        else
@@ -39,7 +39,7 @@ class VotesController < ApplicationController
 	private
 
 	def get_object
-		pp @object=params[:type].constantize.find(params[:id])
+		@object=params[:type].constantize.find(params[:id])
 	end
 
 end
