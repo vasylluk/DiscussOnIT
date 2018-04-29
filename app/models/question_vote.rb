@@ -1,2 +1,0 @@
-class QuestionVote < ApplicationRecord
-end

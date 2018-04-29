@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  
+
   root to: 'pages#index'
+
+  resources :reports ,only:[:new,:create,:index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -28,19 +32,11 @@ Rails.application.routes.draw do
     resources :anscomments, only:[:create,:update,:destroy]
   end
 
-  get "answers/:id/positiv_vote", to: "answers#positiv_vote", as:"positiv_vote"
-  get "answers/:id/negativ_vote", to: "answers#negativ_vote", as:"negativ_vote"
-
-  get "questions/:id/qpositiv_vote", to: "questions#positiv_vote", as:"qpositiv_vote"
-  get "questions/:id/qnegativ_vote", to: "questions#negativ_vote", as:"qnegativ_vote"
-
-
   resources :posts do
-    member do
-      get :positiv_vote
-      get :negativ_vote
-    end
     resources :postcomments , only:[:create,:update,:destroy]
   end
+
+  get "/:type/:id/positiv_vote",to: "votes#positiv_vote",as:"positiv_vote"
+  get "/:type/:id/negativ_vote",to: "votes#negativ_vote",as:"negativ_vote"
 
 end
