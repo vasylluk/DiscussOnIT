@@ -38,14 +38,15 @@
 		<span class="fa fa-plus"></span>
 		<%when "Update"%>
 		<span class="fa fa-pencil"></span>
-		<%else%>
+		<%else%>	
 		this else
 	<%end%>
 
 	<%case notif.resource_type%>
 		<%when "Question"%>
 			<%= notif.text%> <%=link_to Question.find(notif.resource_id).name , question_path(notif.resource_id)%>
-		<%when "Answer"%>
+		<%when "User"%>
+			<%= notif.text%> <%=link_to User.find(notif.resource_id).nickname , userparam_path(notif.resource_id)%>
 	<%else%>
 		<%=notif.text%>
 	<%end%>

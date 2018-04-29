@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :userparams,only:[:show,:edit,:update]
   get "notifications", to: "userparams#notifications", as:"notifications"
   get "notif_delet", to: "userparams#notif_delet",as:"notif_delet"
+  post "userparams/:id/user_notif",to:"userparams#user_notif",as:"user_notif"
   get "chosens", to:"questions#chosens",as:"chosens"
 
 

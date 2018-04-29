@@ -1,6 +1,6 @@
 class UserparamsController < ApplicationController
 	before_action :authenticate_user!, except:[:index,:show]
-	before_action :get_userparam,except:[:notifications,:show]
+	before_action :get_userparam,except:[:notifications,:show,:user_notif]
 
 	def show
 		@userparam= Userparam.find(params[:id])
@@ -15,6 +15,13 @@ class UserparamsController < ApplicationController
 			@userparam.update(userparam_params)
 		end
 		redirect_to userparam_path(@userparam.id)
+	end
+
+	def user_notif
+		@user=Userparam.find(params[:id]).user
+		@notification = Notification.create(user_id:@user.id ,text: params[:notification][:text], resource_type: "User",resource_id: current_user.id)
+		@notification.save
+		redirect_back(fallback_location: root_path)
 	end
 
 	def notifications

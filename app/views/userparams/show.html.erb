@@ -28,6 +28,13 @@
 
 </div><%end%>
 
+<%if user_signed_in? && @userparam.user.id != current_user.id%>
+<%= form_for :notification, url:user_notif_path(@userparam.id) do |f|%>
+<%=f.text_area :text%>
+
+<%=f.submit "commit" %>
+<%end%>
+<%end%>
 </div>
 </div>
 <div class="col-12 col-md-3">
