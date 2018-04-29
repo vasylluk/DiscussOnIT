@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
 	def show
 		@answers=Answer.where(question_id: @question.id).order(right: :DESC,score: :DESC)
 		@qcomments=Qcomment.where(question_id: @question.id)
-		@question.update(view: @question.view+1)
+		@question.view+=1
+		@question.save
 	end
 
 	def new
@@ -52,9 +53,9 @@ class QuestionsController < ApplicationController
 		if @chosen=ChosenQuestion.find_by(user_id: current_user.id, question_id: @question.id)
 		    @chosen.delete
 		else
-		   @chosen=ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
-		   @chosen.save
-		   @noti = Notification.create(user_id: @question.user.id, resource_type: @question.class.name, text: "New user Choosen your  question ", resource_id: @question.id)
+		   	@chosen=ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
+		   	@chosen.save
+		   	@noti = Notification.create(user_id: @question.user.id, resource_type: @question.class.name, text: "New user Choosen your  question ", resource_id: @question.id)
         	@noti.save
 		end
 		redirect_to question_path(@question.id)
