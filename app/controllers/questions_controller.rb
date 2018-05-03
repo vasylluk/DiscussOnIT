@@ -11,6 +11,10 @@ class QuestionsController < ApplicationController
 		@qcomments=Qcomment.where(question_id: @question.id)
 		@question.view+=1
 		@question.save
+		Tag.where(resource_type: @question.class.name , resource_id: @question.id).each {|tag| 
+        	utag =UserTag.where(user_id: current_user.id, category_id:tag.category_id).first_or_create! 
+        	utag.update(score: utag.score+1)
+      	}
 	end
 
 	def new

@@ -23,8 +23,13 @@ class PostsController < ApplicationController
   	end
 
   	def show
-      @post.update(view: @post.view+1)
+      @post.view+=1
+      @post.save
   		@postcomments= Postcomment.where(post_id: @post.id)
+      Tag.where(resource_type: @post.class.name , resource_id: @post.id).each {|tag| 
+        utag =UserTag.where(user_id: current_user.id, category_id:tag.category_id).first_or_create! 
+        utag.update(score: utag.score+1)
+      }
   	end
 
   	def edit

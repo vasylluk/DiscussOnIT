@@ -11,6 +11,7 @@ class User < ApplicationRecord
   	has_many :questions,dependent: :destroy
     has_many :qcomments,dependent: :destroy
     has_many :chosen_questions,dependent: :destroy
+
   	has_many :answers,dependent: :destroy
     has_many :anscomments,dependent: :destroy
 
@@ -22,6 +23,8 @@ class User < ApplicationRecord
     has_many :notifications,dependent: :destroy
 
     has_many :votes,dependent: :destroy
+
+    has_many :user_tags ,dependent: :destroy
 
 
 private

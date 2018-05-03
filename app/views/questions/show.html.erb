@@ -4,13 +4,10 @@
 <h3><%= @question.name %> &nbsp; 
 	<%if user_signed_in?%>
 	<%if current_user.id==@question.user.id%>
-		<%=link_to "", edit_question_path(@question.id), class:"fa fa-pencil" , style:"text-decoration: none;"%>
+		<%=link_to edit_question_path(@question.id) , style:"text-decoration: none;" do%> <span class="fa fa-pencil" ></span><%end%>
 	<%end%>
-  	<%if ChosenQuestion.find_by(question_id: @question.id, user_id: current_user.id) %>
-		<%= link_to "", chosen_question_path , class:"fa fa-star", style:"text-decoration: none;"%>
-	<%else%>
-		<%= link_to "", chosen_question_path , class:"fa fa-star-o",style:"text-decoration: none;"%>
-	<%end%>
+  	
+	<%= link_to chosen_question_path , style:"text-decoration: none;" do%><%if ChosenQuestion.find_by(question_id: @question.id, user_id: current_user.id) %><span class="fa fa-star"><%else%><span class="fa fa-star-o"><%end%></span><%end%>	
 	<%end%>
 
 	</h3>
