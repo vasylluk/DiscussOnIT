@@ -1,0 +1,17 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/luka/upstar/DiscussOnIT-userparam/app/mailers/welcome_mailer.rb": [
+        1,
+        1,
+        null,
+        1,
+        3,
+        3,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1527358881
+  }
+}

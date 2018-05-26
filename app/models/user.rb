@@ -5,8 +5,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-   	has_one :userparam, dependent: :destroy
+    #validations
+    validates :nickname, presence: true, length: 5..15, uniqueness: true, format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ }
+   	
+    has_one :userparam, dependent: :destroy
 
   	has_many :questions,dependent: :destroy
     has_many :qcomments,dependent: :destroy
@@ -16,7 +18,7 @@ class User < ApplicationRecord
     has_many :anscomments,dependent: :destroy
 
     has_many :posts,dependent: :destroy
-    has_many :postcommets,dependent: :destroy
+    has_many :postcomments,dependent: :destroy
 
     has_many :reports,dependent: :destroy
 
