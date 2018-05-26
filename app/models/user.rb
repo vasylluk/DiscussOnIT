@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-   	after_create :create_userparam
+   	after_create :create_userparam, :welcome_send
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -26,6 +26,9 @@ class User < ApplicationRecord
 
     has_many :user_tags ,dependent: :destroy
 
+  def welcome_send
+    WelcomeMailer.welcome_email(self).deliver
+  end
 
 private
 
