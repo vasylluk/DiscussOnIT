@@ -19,8 +19,7 @@ class VotesController < ApplicationController
 	    	@object.save
 	    	@user.karma+=@vote.score
 	    	@user.save
-	    	#@object.update(score: Vote.where(resource_type: @object.class.name,resource_id: @object.id).sum(:score))
-		end
+	    end
 	    redirect_back(fallback_location: root_path)
 	end
 
@@ -41,8 +40,7 @@ class VotesController < ApplicationController
 	    	@object.save
 	    	@user.karma+=@vote.score
 	    	@user.save
-	    	#@object.update(score: Vote.where(resource_type: @object.class.name,resource_id: @object.id).sum(:score))
-		end
+	    end
 	    redirect_back(fallback_location: root_path)
 	end
 

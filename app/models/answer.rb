@@ -8,7 +8,7 @@ class Answer < ApplicationRecord
 
 	has_many :anscomments, dependent: :destroy
 
-    validates :text, presence: true
+    validates :text, presence: true, length: 5..1024
 
     private
     	

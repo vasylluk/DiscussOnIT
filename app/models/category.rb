@@ -3,5 +3,5 @@ class Category < ApplicationRecord
 
 	has_many :user_tags ,dependent: :destroy
 	
-	validates :name, presence: true
+	validates :name, presence: true, length: 4..32
 end

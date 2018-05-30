@@ -5,6 +5,8 @@ class Qcomment < ApplicationRecord
 	belongs_to :user
 	belongs_to :question
 
+    validates :text, presence: true, length: 5..64
+
 	private
 
 		def qcomment_create

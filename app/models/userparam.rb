@@ -1,5 +1,6 @@
 class Userparam < ApplicationRecord
 	belongs_to :user
+	validates :bio, length: 5..255
 	validates :phone,
              uniqueness: true,
              length: { is: 13 },

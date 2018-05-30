@@ -9,14 +9,19 @@ subject{
 describe "validation" do
   it "is valid with valid attributes" do
     expect(subject).to be_valid
-end
-
+  end
   it "should not be valid without nickname" do
      subject.nickname = nil
      expect(subject).to_not be_valid
+  end
 end
-end
- 
+  context "when user nickname is already taken" do
+     before do
+      user_dub = create(:user)
+    end
+     it {should_not be_valid}
+  end
+
  context "when user nickname is not right format" do
     it "should not be valid" do
     subject.nickname = "^top^"

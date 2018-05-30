@@ -11,6 +11,10 @@ subject{
      it "is valid with valid attributes" do
        expect(subject).to be_valid
      end
+     it "is not valid with too short bio" do
+        subject.bio = "lol"
+        expect(subject).to_not be_valid
+     end
   end
 
  context "when user phone is not right format" do
@@ -18,6 +22,7 @@ subject{
     subject.phone = "12345678"
     expect(subject).to_not be_valid
  end
+ 
  end
   context "association" do
      it { should belong_to(:user) }
