@@ -7,7 +7,10 @@ class UserparamsController < ApplicationController
 	end
 
 	def edit
-		
+		respond_to do |format|
+      		format.html
+      		format.js
+    	end
 	end
 
 	def update
@@ -28,7 +31,7 @@ class UserparamsController < ApplicationController
 		@notifications = Notification.where(user_id: current_user.id).order(created_at: :DESC)
 	end
 
-	def notif_delet
+	def notif_delete
 		@notifications = Notification.where(user_id: current_user.id).map { |e|  e.delete }
 		redirect_back(fallback_location: root_path)
 	end
