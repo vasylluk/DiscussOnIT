@@ -6,6 +6,8 @@ let!(:user){create(:user)}
   subject{
     build(:post, user: user)
   }
+		build(:post, user: user)
+	}
   
     context "with 2 or more comments" do
       it "gets all postcomments of current post" do
@@ -28,6 +30,18 @@ let!(:user){create(:user)}
         subject.title = ""
         expect(subject).to_not be_valid
       end
+  	describe "validation" do
+  		it "is valid with valid attributes" do
+    		expect(subject).to be_valid
+  		end
+	   	it "is not valid without body field" do
+   			subject.body = ""
+   			expect(subject).to_not be_valid
+   		end
+   		it "is not valid without title field" do
+   			subject.title = ""
+   			expect(subject).to_not be_valid
+   		end
       it "is not valid with too short title" do
         subject.title = "lead"
         expect(subject).to_not be_valid

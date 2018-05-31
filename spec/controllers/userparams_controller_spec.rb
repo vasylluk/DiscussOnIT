@@ -28,6 +28,7 @@ login_user
 
   describe 'POST #user_notif' do
     before do
+  	before do
       @userparam = create(:userparam, user_id: subject.current_user.id)
       @notification = create(:notification, user_id:subject.current_user.id ,text: "params[:notification][:text]", resource_type: "User",resource_id: subject.current_user.id)
     end 
@@ -35,6 +36,9 @@ login_user
       post :user_notif
       expect(response).to redirect_to root_path
     end
+      post :notification
+  		expect(response).to redirect_to root_path
+  	end
   end
   
   describe 'GET #edit' do

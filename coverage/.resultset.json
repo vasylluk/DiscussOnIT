@@ -1,6 +1,7 @@
 {
   "RSpec": {
     "coverage": {
+ tests
       "/home/luka/upstar/DiscussOnIT-userparam/app/controllers/postcomments_controller.rb": [
         1,
         1,
@@ -42,17 +43,27 @@
         null,
         null
       ],
+
+
       "/home/luka/upstar/DiscussOnIT-userparam/app/mailers/welcome_mailer.rb": [
         1,
         1,
         null,
         1,
+ 
         7,
         7,
+        11,
+        11,
+
         null,
         null
       ]
     },
+ tests
     "timestamp": 1527734545
+
+    "timestamp": 1527726296
+
   }
 }

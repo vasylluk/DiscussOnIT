@@ -20,6 +20,11 @@ let!(:anscomment) { build(:anscomment) }
   #     assigns(:anscomment).should eq(anscomment)
   #   end
   #   it "renders the anscomments show page" do
+  #     anscomment = FactoryBot(:anscomment)
+  #     get :show, id: anscomment
+  #     assigns(:anscomment).should eq(anscomment)
+  #   end
+  #   it "renders the login page" do
   #     expect(response).to render_template('anscomments/show')
   #   end
   # end
