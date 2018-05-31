@@ -26,17 +26,33 @@ login_user
   end
 
 
-  # describe 'POST #user_notif' do
-  # 	it "should redirect back to the root path" do
-  # 		expect(subject.current_user.userparam.user_notif.resource_id).to eq subject.current_user.id
-  # 	end
-  # end
-
+  describe 'POST #user_notif' do
+  	before do
+      @userparam = create(:userparam, user_id: subject.current_user.id)
+      @notification = create(:notification, user_id:subject.current_user.id ,text: "params[:notification][:text]", resource_type: "User",resource_id: subject.current_user.id)
+    end 
+    it "should redirect back to the root path" do
+      post :notification
+  		expect(response).to redirect_to root_path
+  	end
+  end
+  
+  describe 'GET #edit' do
+    before do
+      @userparam = create(:userparam, user_id: subject.current_user.id)
+      @userparam.update(country: "USA")
+    end  
+    it "edit userparam" do
+      get :edit, params: {id: subject.current_user.userparam.id}
+      expect(subject.current_user.userparam.country).to eq("USA")
+    end
+  end
+  
   describe 'PATCH #update' do
   	before do
       @userparam = create(:userparam, user_id: subject.current_user.id)
     end  
-    it "should update userparam" do
+    it "should update userparam" do 
       patch :update, params: { id: subject.current_user.id, userparam: {univ: "Test123"}}
       expect(subject.current_user.userparam.univ)=="Test123"
     end

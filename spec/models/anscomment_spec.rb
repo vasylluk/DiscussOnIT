@@ -9,7 +9,7 @@ let!(:answer){create(:answer)}
   subject{
 		build(:anscomment)
 	}
-    describe "validation" do
+  describe "validation" do
       it "is valid with valid attributes" do
         expect(subject).to be_valid
       end

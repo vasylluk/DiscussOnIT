@@ -6,6 +6,14 @@ let!(:user){create(:user)}
   subject{
 		build(:question, user: user)
 	}
+    context "with 2 or more comments" do
+      it "gets all qcomments of current post" do
+        question = Question.create!(user_id: user.id, name: "title", text: "bodybody")
+        comment1 = question.qcomments.create!(user_id: user.id, :text => "1comment")
+        comment2 = question.qcomments.create!(user_id: user.id, :text => "2comment")
+        expect(question.qcomments).to eq([comment1, comment2])
+      end
+    end
   	
   	describe "validation" do
       it "is valid with valid attributes" do
