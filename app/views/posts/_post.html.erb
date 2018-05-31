@@ -1,0 +1,36 @@
+<div class="row clearfix">
+	<div class="col-1">
+		Views:
+		<p style="font-size: 34px" align="center"><b><%=post.view%></b></p>
+
+		<hr>
+		<%=link_to positiv_vote_path(post.class.name,post.id) do%>
+		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
+		<%end%>
+		<h3 class="text-center text-dark" style="margin: 0; margin-left: 2px;"><%=post.score%></h3>
+		<%=link_to  negativ_vote_path(post.class.name,post.id) do%>
+		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
+		<%end%>
+	</div>
+	<div class="col">
+		<h5>
+			<%=link_to post.name, post_path(post.id) %>
+			&emsp;Автор:&emsp;<%=image_tag post.user.userparam.avatar.url, height:22%> 
+			<small>
+				<b class="text-secondary"><%= link_to post.user.nickname, userparam_path(post.user.userparam)%>
+				</b>
+			</small>
+		</h5>
+		<p>
+			<%=strip_tags(post.text)[0..255]%>...
+			<br>
+			<div>
+				<p> 
+					<%= raw Tag.new.all_tags_w(post).map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
+				</p>
+			</div>
+		</p>
+		
+	</div>
+</div>
+<hr/>

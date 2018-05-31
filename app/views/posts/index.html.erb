@@ -1,0 +1,30 @@
+<div class="row">
+<div class="col">	
+<div class="row">
+	<div class="col">
+	<ul class="nav">
+	  <span class="navbar-text font-weight-bold">
+	  	<%= t(:all_post)%>
+	  </span>
+	</ul>
+	</div>
+<!--  separator  -->	
+	<div class="col">
+	<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%=link_to t(:new_post), new_post_path, class:"btn btn-primary" %>
+  </li>
+</ul>
+
+</div>
+</div>
+<hr>
+
+<%=render @posts%>
+</div>
+<div class="col-12 col-md-3">
+	 <%= render "layouts/sidebar"%>
+</div>
+</div>
+
+<%= will_paginate @posts, page_links:  false %>

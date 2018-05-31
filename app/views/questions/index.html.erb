@@ -12,10 +12,9 @@
 	<div class="col">
 	<ul class="nav justify-content-end">
   <li class="nav-item">
-    <a href = "/questions/new"><button type="button" class="btn btn-primary"><%= t('new_question') %></button></a>
+    <%=link_to t('new_question'), new_question_path, class:"btn btn-primary" %>
   </li>
 </ul>
-
 </div>
 </div>
 <hr>
@@ -26,3 +25,4 @@
 	 <%= render "layouts/sidebar"%>
 </div>
 </div>
+<%= will_paginate @posts, page_links:  false %>

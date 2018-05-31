@@ -1,0 +1,64 @@
+<style type="text/css">
+
+</style>
+
+<div class="row">
+<div class="col">	
+<div class="row">
+	<div class="col">
+	<ul class="nav">
+	  <span class="navbar-text font-weight-bold">
+	  	<%= t('notifications') %>
+	  </span>
+	</ul>
+	</div>
+<!--  separator  -->	
+	<div class="col">
+	<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%=link_to t('notif_delet'), notif_delet_url, class:"btn btn-primary" %>
+  </li>
+</ul>
+
+</div>
+</div>
+<hr>
+<%@notifications.each do|notif|%>
+	<%if notif.view %>
+		<div class="bg-light">
+	<%else%>
+		<div class="bg-info">
+		<%notif.update(view: true)%>
+	<%end%>
+
+	<%case notif.text.split(' ')[0]%>
+		<%when "Commet"%>
+		<span class="fa fa-comment"></span>
+		<%when "New"%>
+		<span class="fa fa-plus"></span>
+		<%when "Update"%>
+		<span class="fa fa-pencil"></span>
+		<%else%>	
+		this else
+	<%end%>
+
+	<%case notif.resource_type%>
+		<%when "Question"%>
+			<%= notif.text%> <%=link_to Question.find(notif.resource_id).name , question_path(notif.resource_id)%>
+		<%when "User"%>
+			<%= notif.text%> <%=link_to User.find(notif.resource_id).nickname , userparam_path(notif.resource_id)%>
+	<%else%>
+		<%=notif.text%>
+	<%end%>
+		<span class="pull-right"><%=notif.created_at.strftime("%Y/%m/%d %H:%M")%></span>
+
+		</div>
+	
+	<hr class="hr-1" />
+<%end%>
+
+</div>
+<div class="col-12 col-md-3">
+	 <%= render "layouts/sidebar"%>
+</div>
+</div>

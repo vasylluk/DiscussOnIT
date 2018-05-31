@@ -27,18 +27,12 @@
     <%= f.label :password_confirmation,t('password_confirmation') %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" , :class=>"form-control" %>
   </div>
-<br />
-<div class="custom-file">
-  <%= f.file_field :avatar, :class=>"custom-file-input", :id=>"customFile" %>
-  <label class="custom-file-label" for="customFile"><%= t('chose_avatar') %></label>
-</div>
   <br />  <br />
   <div class="actions">
     <%= f.submit t('sign_up') , :class=>"btn btn-primary"%>
   </div>
   <br />
 <% end %>
-
 <%= render "users/shared/links" %>
 </div>
 <div class="col">

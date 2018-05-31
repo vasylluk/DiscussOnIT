@@ -1,7 +1,67 @@
-<p><%=answer.text%></p>
-<p><%=answer.user.email%></p>
-<p><%=answer.score%> <%=link_to '+', positiv_vote_path(answer.id), method: :get%><%=link_to '-', negativ_vote_path(answer.id)%></p>
-<%=form_for :anscomment,  url:answer_anscomment_path(answer.id) do |f| %>
-	<%=render "anscomments/form", f:f%>
-<%end%>
- <p><%=link_to "Видалити", question_answer_path(answer.question.id,answer.id), method: :delete%></p> 
+
+<div class="row clearfix">
+	<div class="col-1">
+		<%=link_to positiv_vote_path(answer.class.name,answer.id) do%>
+		<%= image_tag "up-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block" %>
+		<%end%>
+		<h3 class="text-center text-dark" style="margin: 0; margin-left: 2px;"><%=answer.score%></h3>
+		<%=link_to negativ_vote_path(answer.class.name,answer.id) do%>
+		<%= image_tag "down-arrow.svg", :heigth=>"18", :width=>"18", :class=>"mx-auto d-block"  %>
+		<%end%>
+	<center>
+	<%if answer.right %>
+		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: green;"></span><%end%>
+	<%else%>
+		<%if user_signed_in? && current_user.id == answer.question.user.id%>
+		<%=link_to right_answer_path(answer.id)do%><span class="fa fa-check fa-2x" , style=" color: lightgrey;"><%end%>
+		<%end%>
+	<%end%>
+	</center> 
+	</div>
+
+	<div class="col">
+	<%=answer.text.html_safe%>
+
+
+
+		<%=form_for :anscomment,  url:answer_anscomments_path(answer.id) do |h| %>
+			<small class="float-left"><b>
+				<%if user_signed_in? && current_user.id==answer.user.id%>
+				
+					<%=form_for answer, url:question_answer_path(answer.question.id,answer.id) do |f|%>
+						<b><a class="text-secondary" href="#" data-toggle="modal" data-target="#editAnswerModal"><%=t('edit')%></a></b>
+						<div class="modal fade" id="editAnswerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    							<div class="modal-content">
+      								<div class="modal-header">
+        								<h5 class="modal-title" id="exampleModalLongTitle"><%=t('answer')%></h5>
+        								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          									<span aria-hidden="true">&times;</span>
+        								</button>
+      								</div>
+      								<div class="modal-body">
+	    								<%= f.text_area :text, :class => "form-control tinymce", :rows => 8 %>
+										<%= tinymce %>
+	  								</div>
+      							<div class="modal-footer">
+        							<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><%=t('cancel')%></button>
+        							<%= f.submit t('submit'), :class=>"btn btn-sm btn-primary"%>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+					<%end%>
+
+					&emsp;
+					<%=link_to t('delete'), question_answer_path(answer.question.id,answer.id),data:{confirm: t("are_you_shore")}, method: :delete, class:"text-secondary"%>
+					&emsp;
+				<%end%>
+				<%=render "anscomments/form", h:h%>
+			</b></small>
+		<%end%>
+	<small class="text-right text-dark float-right"><%=image_tag answer.user.userparam.avatar.url, height:20%> <b class="align-bottom"><%= link_to answer.user.nickname, userparam_path(answer.user.userparam)%></b></small><br/>
+	<%=render Anscomment.where(answer_id: answer.id)%>
+</div>
+
+</div>
+<hr>

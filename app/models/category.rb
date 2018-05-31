@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
-	has_many :tags
-	has_many :questions, through: :tags
-	validates :name, presence: true
+	has_many :tags, dependent: :destroy
+
+	has_many :user_tags ,dependent: :destroy
+	
+	validates :name, presence: true, length: 4..32
 end

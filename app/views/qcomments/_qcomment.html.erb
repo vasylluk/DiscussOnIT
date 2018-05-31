@@ -1,8 +1,7 @@
-<div>
-	<h6>Користувач <span class="fa fa-user"></span><b><%=qcomment.user.nickname%><b>прокомент
-</h6>
-	<p>
-		<%=qcomment.text.html_safe%>
-	</p>
-	<hr>
-</div> 
+<div class="bg-light small">
+		<b><span class = "fa fa-user"></span> <%=qcomment.user.nickname%>:</b> <%=strip_tags(qcomment.text)%>
+		<%if qcomment.user.id==current_user.id%>
+		<%=link_to question_qcomment_path(qcomment.question.id,qcomment.id),data: {confirm: "Видалити?"} ,method: :delete do%><span class = "fa fa-times" style="color: lightgray;"><%end%>
+		<%end%>
+</div>
+<hr class="hr-1" />

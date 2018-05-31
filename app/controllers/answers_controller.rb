@@ -1,61 +1,55 @@
 class AnswersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_answer, only:[:update,:destroy,:positiv_vote,:negativ_vote]
+	before_action :set_answer, except:[:create]
 
 	def create
-		params[:answer][:user_id]=current_user.id
-		params[:answer][:question_id]=params[:question_id]
-		@answer=Answer.create(answer_params)
-		if @answer.save
-			@question=Question.find(@answer.question_id)
-       		@question.update(count: @question.count+1)
-			redirect_to question_path(@answer.question.id)
+		@question=Question.find(params[:question_id])
+		if current_user.id != @question.user.id
+			params[:answer][:user_id]=current_user.id
+			params[:answer][:question_id]=params[:question_id]
+			@answer=Answer.create(answer_params)
+			if @answer.save
+       			@question.update(count: @question.count+1)
+				redirect_to question_path(@answer.question.id)
+			else
+				render 'form'
+			end
 		else
-			render 'form'
+			redirect_to question_path(params[:question_id])
 		end
+
 	end
 
 	def update
-		@answer.update(answer_params)
-
+		if @answer.user.id == current_user.id
+			@answer.update(answer_params)
+		end
 		redirect_to question_path(@answer.question.id)
 	end
 
 	def destroy
-		@question=Question.find(@answer.question.id)
-		@question.update(count: @question.count-1)
-		@answer.destroy
-		redirect_to question_path(params[:question_id])
+		if @answer.user.id == current_user.id
+			@question=Question.find(@answer.question.id)
+			@answer.destroy
+			@question.update(count: @question.count-1)
+		end
+		redirect_back(fallback_location: root_path)
 	end
 
-	def positiv_vote
-		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
-		if @vote==nil
-		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: 1)
-	    else
-	    	if @vote.score == -1
-	    	    @vote.update(score: 0)
-	        else
-	        	@vote.update(score: 1)
-	        end
-	    end
-	    @answer.update(score: AnswerVote.where(answer: @answer.id).sum(:score))
-	    redirect_to question_path(@answer.question.id)
-	end
-
-	def negativ_vote
-		@vote=AnswerVote.where(user_id: current_user.id,answer_id: @answer.id).first
-		if @vote==nil
-		    @vote=AnswerVote.create(user_id: current_user.id, answer_id: @answer.id, score: -1)
-	    else
-	    	if @vote.score == 1
-	    	    @vote.update(score: 0)
-	    	else
-	    	    @vote.update(score:-1)
-	        end
-	    end
-	    @answer.update(score: AnswerVote.where(answer: @answer.id).sum(:score))
-	    redirect_to question_path(@answer.question.id)
+	def right
+		
+		if @answer.question.user.id== current_user.id
+			@user=Userparam.find(@answer.user.userparam.id)
+			if @answer.right
+			@answer.update(right: false)
+			@user.update(karma: @user.karma-100)
+			else
+			@answer.update(right: true)
+			@user.update(karma: @user.karma+100)
+			end
+			@answer.save
+		end
+		redirect_to question_path(@answer.question.id)
 	end
 
 	private
