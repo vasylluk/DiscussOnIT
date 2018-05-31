@@ -15,6 +15,11 @@ let!(:anscomment) { build(:anscomment) }
 
   # describe "GET #show" do
   #   it "assigns the requested anscomment to @anscomment" do
+  #     anscomment = FactoryBot.create(:anscomment)
+  #     get :show
+  #     assigns(:anscomment).should eq(anscomment)
+  #   end
+  #   it "renders the anscomments show page" do
   #     anscomment = FactoryBot(:anscomment)
   #     get :show, id: anscomment
   #     assigns(:anscomment).should eq(anscomment)
@@ -34,6 +39,15 @@ let!(:anscomment) { build(:anscomment) }
 
   # it "should belongs to an answer" do
   #   expect(:anscomment.answer_id).to_not eq(nil)
+  # end
+
+  # context "without render_views" do
+  #     describe "GET show" do
+  #       it "renders the RSpec generated template" do
+  #         get :show
+  #         expect(response.body).to eq("")
+  #       end
+  #     end
   # end
 
   describe "GET #show" do

@@ -1,13 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
+<<<<<<< HEAD
+=======
 
 let!(:user){create(:user)}
 let!(:question){create(:question)}
 
+>>>>>>> c1b856ff81708e65655cd37032717dcc1d093d7c
   subject{
 		build(:answer, user: user, question: question)
 	}
+<<<<<<< HEAD
+  	describe "validation" do
+   		it "is valid with valid attributes" do
+   			expect(subject).to be_valid
+   		end
+	end
+	describe "associations" do
+		it{ should have_one(:user_id).dependent(:destroy)}
+	end
+
+	describe "associations" do
+		it{ should have_one(:question_id).dependent(:destroy)}
+	end
+=======
     describe "validation" do
       it "is valid with valid attributes" do
         expect(subject).to be_valid
@@ -35,4 +52,5 @@ let!(:question){create(:question)}
      it { should have_many(:anscomments) }
   end
 
+>>>>>>> c1b856ff81708e65655cd37032717dcc1d093d7c
 end

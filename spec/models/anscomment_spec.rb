@@ -1,14 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Anscomment, type: :model do
-
 let!(:user){create(:user)}
 let!(:question){create(:question)}
 let!(:answer){create(:answer)}
-
   subject{
 		build(:anscomment)
 	}
+  	describe "validation" do
+   		it "is valid with valid attributes" do
+   			expect(subject).to be_valid
+   		end
+	end
+
+	describe "associations" do
+		it{ should have_one(:answer_id).dependent(:destroy)}
+	end
+end
+    describe "validation" do
   describe "validation" do
       it "is valid with valid attributes" do
         expect(subject).to be_valid

@@ -4,6 +4,8 @@ RSpec.describe Question, type: :model do
 let!(:user){create(:user)}
 
   subject{
+    build(:question, user: user)
+  }
 		build(:question, user: user)
 	}
     context "with 2 or more comments" do
@@ -14,6 +16,8 @@ let!(:user){create(:user)}
         expect(question.qcomments).to eq([comment1, comment2])
       end
     end
+    
+    describe "validation" do
   	
   	describe "validation" do
       it "is valid with valid attributes" do
@@ -39,12 +43,12 @@ let!(:user){create(:user)}
         subject.name = "lol"
         expect(subject).to_not be_valid
       end
-  	end
-  	
-  	context "association" do
+    end
+    
+    context "association" do
      it { should belong_to(:user) }
      it { should have_many(:qcomments) }
      it { should have_many(:answers) }
      it { should have_many(:chosen_questions) }
-  	end
+    end
 end
