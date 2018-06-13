@@ -1,6 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe ProductsController, type: :controller do
+RSpec.describe QuestionsController, type: :controller do
+
+  context "without render_views" do
+    describe "GET index" do
+      it "renders the RSpec generated template" do
+        get :index
+        expect(response.body).to eq("")
+      end
+    end
+  end
 
   describe "GET #show" do
     it "returns http success" do

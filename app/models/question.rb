@@ -9,6 +9,8 @@ class Question < ApplicationRecord
 	has_many :qcomments, dependent: :destroy
 
     validates :name, :text, presence: true
+    validates :name, length: 5..64
+    validates :text, length: 5..1024
 
     def all_tags
     	Tag.where(resource_type: self.class.name, resource_id: self.id).map{|tag| tag = Category.find(tag.category_id)}.map(&:name).join(', ')

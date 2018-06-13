@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :report do
     user_id 1
-    type ""
+    type "1"
     text "MyString"
   end
 end
