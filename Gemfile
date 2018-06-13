@@ -50,6 +50,8 @@ gem 'country_select'
 #По-сторінковий вивід
 gem 'will_paginate', '~> 3.1.0'
 
+gem 'order_as_specified'
+
 gem 'pg'
 #search gem
 gem 'ransack'

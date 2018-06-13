@@ -3,7 +3,15 @@ class QuestionsController < ApplicationController
 	before_action :set_question, only:[:show,:edit,:update,:destroy,:chosen,:positiv_vote,:negativ_vote]
 
 	def index
-		@questions = Question.all.page(params[:page]).per(10)
+		if user_signed_in? && current_user.userparam.filter
+     		question_s = Set.new
+      		categories = UserTag.where(user_id: current_user.id).order(score: :DESC).map{|utag| utag=utag.category}
+      		categories.map{|category| Tag.where(category_id: category.id, resource_type:"Question").each do|tag| question_s.add(tag.resource_id) end}
+      		question_s = question_s.to_a
+      		@question =Question.where(id: question_s.to_a).page(params[:page]).per(10)
+    	else
+			@questions = Question.all.page(params[:page]).per(10)
+		end
 	end
 
 	def show
@@ -11,10 +19,12 @@ class QuestionsController < ApplicationController
 		@qcomments=Qcomment.where(question_id: @question.id)
 		@question.view+=1
 		@question.save
-		Tag.where(resource_type: @question.class.name , resource_id: @question.id).each {|tag| 
-        	utag =UserTag.where(user_id: current_user.id, category_id:tag.category_id).first_or_create! 
-        	utag.update(score: utag.score+1)
-      	}
+		if user_signed_in?
+			Tag.where(resource_type: @question.class.name , resource_id: @question.id).each {|tag| 
+        		utag =UserTag.where(user_id: current_user.id, category_id:tag.category_id).first_or_create! 
+        		utag.update(score: utag.score+1)
+      		}
+      	end
 	end
 
 	def new

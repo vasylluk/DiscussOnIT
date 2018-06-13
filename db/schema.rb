@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20180503122602) do
     t.string "univ"
     t.string "phone"
     t.integer "karma", default: 0
+    t.boolean "filter", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"

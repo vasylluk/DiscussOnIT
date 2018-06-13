@@ -10,4 +10,4 @@ if defined?(WillPaginate)
       alias_method :num_pages, :total_pages
     end
   end
-end
+end 
