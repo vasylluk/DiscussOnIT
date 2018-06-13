@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+    extend OrderAsSpecified
+    
     after_update :question_update
     before_destroy :question_destroy
     

@@ -4,14 +4,13 @@ class PostsController < ApplicationController
 
 	def index
     if user_signed_in? && current_user.userparam.filter
-      #провірити сортування !!!
       post_s=Set.new
       categories = UserTag.where(user_id: current_user.id).order(score: :DESC).map{|utag| utag=utag.category}
       categories.map{|category| Tag.where(category_id: category.id, resource_type:"Post").each do|tag| post_s.add(tag.resource_id) end}
       post_s = post_s.to_a
+      @posts=Post.order_as_specified(id: post_s).page(params[:page]).per(10)
 
       #@posts=Post.find(post_s.to_a, :order => "field(id, #{post_s.to_a.join(',')})").page(params[:page]).per(10)
-      @posts=Post.order_as_specified(id: post_s).page(params[:page]).per(10)
       #@posts=Post.where(id: post_s.to_a).page(params[:page]).per(10)
     else
       @posts = Post.all.order(created_at: :DESC).page(params[:page]).per(10)
