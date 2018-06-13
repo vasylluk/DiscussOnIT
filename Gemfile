@@ -45,6 +45,8 @@ gem 'jquery-rails'
 
 gem 'bootstrap', '~> 4.0.0'
 
+gem 'font-awesome-sass'
+
 #Вибір країни
 gem 'country_select'
 #По-сторінковий вивід
