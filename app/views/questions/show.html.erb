@@ -3,14 +3,21 @@
 <div class="col">
 <h3><%= @question.name %> &nbsp; 
 	<%if user_signed_in?%>
-	<%if current_user.id==@question.user.id%>
-		<%=link_to edit_question_path(@question.id) , style:"text-decoration: none;" do%> <span class="fa fa-pencil" ></span><%end%>
-	<%end%>
+		<%if current_user.id==@question.user.id%>
+			<%=link_to edit_question_path(@question.id) , style:"text-decoration: none;" do%> 
+				<span class="fa fa-pencil" ></span>
+			<%end%>
+		<%end%>
   	
-	<%= link_to chosen_question_path , style:"text-decoration: none;" do%><%if ChosenQuestion.find_by(question_id: @question.id, user_id: current_user.id) %><span class="fa fa-star"><%else%><span class="fa fa-star-o"><%end%></span><%end%>	
+		<%= link_to chosen_question_path , style:"text-decoration: none;" do%>
+			<%if ChosenQuestion.find_by(question_id: @question.id, user_id: current_user.id) %>
+				<span class="fa fa-star">
+			<%else%>
+				<span class="fa fa-star-o">
+			<%end%></span>
+		<%end%>	
 	<%end%>
-
-	</h3>
+</h3>
 <hr>
 <p> 
 <%= raw Tag.new.all_tags_w(@question).map(&:name).map{ |t| link_to t, category_path(t), class: 'font-weight-bold badge badge-secondary' }.join(' ') %>
