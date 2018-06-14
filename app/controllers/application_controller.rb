@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def get_tags
     #можна спецалізовано зробити для виводу самих цікавих тегів для користувача
-    if current_user != nil
+    if current_user != nil && current_user.userparam.filter
       @tags=UserTag.where(user_id: current_user.id).order(score: :DESC).map{|tag| tag = tag.category}
     else
       @tags=Category.all
