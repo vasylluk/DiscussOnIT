@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 			ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
 			redirect_to question_path(@question.id)
 		else
-
+			render 'new'
 		end
 	end
 

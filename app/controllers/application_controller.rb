@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 	before_action :get_q
   before_action :get_user_rat
   before_action :get_tags
+  before_action :get_category_names
 	 
 	def default_url_options
       { locale: I18n.locale }
@@ -35,6 +36,10 @@ class ApplicationController < ActionController::Base
     else
       @tags=Category.all
     end
+  end
+
+  def get_category_names
+    @category_names= Category.all.collect(&:name).to_param
   end
 
 end
