@@ -40,17 +40,26 @@
         <img class="img-circle" style="margin-top: -4px; margin-bottom: -4px;" height="30px" src="<%=current_user.userparam.avatar.url%>">
       </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <p class="dropdown-item"><span class = "fa fa-user" style="color: lightgray;"></span>&nbsp;<%= link_to t('profile'), userparam_path(current_user.userparam.id)%></p>
-        <p class="dropdown-item"><span class = "fa fa-envelope " style="color: lightgray;">          
-        </span>&nbsp;<%= link_to "Сповіщення", notifications_path%>
-        <% if Notification.where(user_id: current_user.id, view: false).count > 0%>
-        <span class="badge badge-primary" data-toggle="tooltip" title="Кількість непрочитаних">          
-          <%= Notification.where(user_id: current_user.id, view: false).count%>
-          </span><%end%> 
-        </p>
-        <p class="dropdown-item"><span class = "fa fa-star" style="color: lightgray;"></span>&nbsp;<%= link_to "Закладки", chosens_path %></p>
+        
+        <%= link_to userparam_path(current_user.userparam.id) do %>
+          <p class="dropdown-item"><span class = "fa fa-user">&nbsp; <%=t('profile')%></span> </p>
+        <%end%>
+        <%= link_to notifications_path do%>
+          <p class="dropdown-item"><span class = "fa fa-envelope ">&nbsp; <%=t('notification')%></span>
+            <% if Notification.where(user_id: current_user.id, view: false).count > 0%>
+              <span class="badge badge-primary" data-toggle="tooltip" title="Кількість непрочитаних">          
+              <%= Notification.where(user_id: current_user.id, view: false).count%>
+            </span><%end%>
+          </p>
+        <%end%>
+        <%= link_to chosens_path do%>
+          <p class="dropdown-item"><span class = "fa fa-star" >&nbsp;<%=t('bookmarks')%></span></p>
+        <%end%>
+        <%=link_to new_report_path do%>
+           <p class="dropdown-item"><span class="far fa-comment-dots"> <%=t('response')%></span></p>
+        <%end%>
         <hr>
-        <p class="dropdown-item"><span class = "fa fa-sign-out" style="color: lightgray;"></span>&nbsp;<%= link_to t('sign_out'), destroy_user_session_path,method: :delete%></p>
+        <p class="dropdown-item"><span class = "fa fa-sign-out"></span>&nbsp;<%= link_to t('sign_out'), destroy_user_session_path,method: :delete%></p>
 
       </div>
     </li>

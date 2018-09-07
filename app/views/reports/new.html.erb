@@ -3,7 +3,7 @@
 <%=f.label "Ваш відгук:"%>
 <div class="form-group">
 <%= f.label "Type:" %>
-<%= f.select(:type, options_for_select([["Проблема",1],["Пропозиція",2]]),  class: "form-control") %>
+<%= f.select(:kind_of, options_for_select(["Проблема","Пропозиція"]),  class: "form-control") %>
 </div>
 
 <div class="form-group">

@@ -17,14 +17,14 @@
 			</div>
 		</div>
 	<hr>
+		<%=render @posts%>
 	<%if @posts != nil%>
-	<%=render @posts%>
+		<div class="flickr_pagination">
+			<%= will_paginate @posts, container: false %>
+  		</div>
 	<%end%>
 	</div>
 	<div class="col-12 col-md-3">
 		<%= render "layouts/sidebar"%>
 	</div>
 </div>
-	<%if @posts != nil%>
-<%= will_paginate @posts, page_links:  false %>
-	<%end%>
