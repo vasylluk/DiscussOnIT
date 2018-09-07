@@ -1,0 +1,24 @@
+<div>
+	<h6 align="center"><b>ТОП Користувачів</b></h6>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Користувач</th>
+				<th>Карма</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@users_rat.each do |user|%>
+				<tr>
+					<td><%=link_to user.user.nickname, userparam_path(user.id)%></td>
+					<td align="center"><%=user.karma%></td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>
+<%if @users_rat != nil%>
+	<div class="flickr_pagination">
+		<%= will_paginate @users_rat, container: false %>
+  	</div>
+<%end%>

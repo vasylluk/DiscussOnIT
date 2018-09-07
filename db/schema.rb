@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20180503122602) do
 
   create_table "reports", force: :cascade do |t|
     t.integer "user_id"
-    t.string "type"
+    t.string "kind_of"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
