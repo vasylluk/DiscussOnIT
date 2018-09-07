@@ -40,11 +40,10 @@ gem 'devise'
 gem "paperclip", "~> 6.0.0"
 #text edit
 gem 'tinymce-rails'
-
+#jquery
 gem 'jquery-rails'
-
 gem 'jquery-ui-rails'
-
+#css
 gem 'bootstrap', '~> 4.0.0'
 
 gem 'font-awesome-sass'
@@ -53,7 +52,7 @@ gem 'font-awesome-sass'
 gem 'country_select'
 #По-сторінковий вивід
 gem 'will_paginate', '~> 3.1.0'
-
+#group to id 
 gem 'order_as_specified'
 
 gem 'pg'
