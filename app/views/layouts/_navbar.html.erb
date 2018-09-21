@@ -1,3 +1,11 @@
+<script>
+  $('#id_of_searchfield').keypress(function(e){
+      if(e.which == 13){
+           $(this).closest('form').submit();
+       }
+    });
+</script>
+
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
@@ -19,26 +27,24 @@
 
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 
-        <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         <li>
-          <div>
-          <%= search_form_for @q, url: root_path do |k| %>
-              <%= k.label t(:find)%>
-              <%= k.search_field :name_or_text_cont %>
-              <%= k.submit t(:search), class:"btn btn-info"%>
+          <div class="container-2">
+          <span class="icon"><i class="fa fa-search"></i></span>
+          <%= search_form_for @q, url: root_path do |k| %> 
+              <%= k.search_field :name_or_text_cont, id:"search", type:"search", placeholder:"Search..." %>
             <% end %>
           </div>
         </li>
 
 
          <%if user_signed_in?%>
-    <span class="navbar-text">
-      <%= current_user.nickname %>
-    </span>
-        <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+ <li class="nav-item dropdown">
+
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> <%= current_user.nickname %>
         <img class="img-circle" style="margin-top: -4px; margin-bottom: -4px;" height="30px" src="<%=current_user.userparam.avatar.url%>">
       </a>
+
       <div class="dropdown-menu dropdown-menu-right">
         
         <%= link_to userparam_path(current_user.userparam.id) do %>
