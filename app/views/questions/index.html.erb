@@ -20,9 +20,14 @@
 <hr>
 
 <%=render @questions%>
+
+	<%if @questions != nil%>
+		<div class="flickr_pagination">
+			<%= will_paginate @questions, container: false %>
+  		</div>
+	<%end%>
 </div>
 <div class="col-12 col-md-3">
 	 <%= render "layouts/sidebar"%>
 </div>
 </div>
-<%= will_paginate @posts, page_links:  false %>

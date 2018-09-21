@@ -1,0 +1,83 @@
+/*----------- Search --------------*/
+
+  .container-2{
+  white-space: nowrap;
+  position: relative;
+}
+
+.container-2 input#search{
+  width: 100px;
+  height: 30px;
+  margin-top: 10px;
+
+
+  background: #DCDCDC;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #262626;
+  padding-left: 35px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #000;
+ 
+  -webkit-transition: width .55s ease;
+  -moz-transition: width .55s ease;
+  -ms-transition: width .55s ease;
+  -o-transition: width .55s ease;
+  transition: width .55s ease;
+}
+
+.container-2 input#search::-webkit-input-placeholder {
+   color: #65737e;
+}
+ 
+.container-2 input#search:-moz-placeholder { /* Firefox 18- */
+   color: #65737e;  
+}
+ 
+.container-2 input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #65737e;  
+}
+ 
+.container-2 input#search:-ms-input-placeholder {  
+   color: #65737e;  
+}
+
+.container-2 .icon{
+  position: absolute;
+  margin-left: 11px;
+  margin-top: 13px;
+  z-index: 1;
+  color: #4f5b66;
+}
+
+.container-2 input#search:focus, .container-2 input#search:active{
+  outline:none;
+  width: 300px;
+}
+ 
+.container-2:hover input#search{
+width: 300px;
+}
+ 
+.container-2:hover .icon{
+  color: #191919;
+}
+/*---------------------------------*/
+
+
+/*------------DROPMENU-------------*/
+
+#navbardrop{
+  position: relative;
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+/*---------------------------------*/
+
+.navbar {
+  padding: 10px auto;
+}

@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
       		categories = UserTag.where(user_id: current_user.id).order(score: :DESC).map{|utag| utag=utag.category}
       		categories.map{|category| Tag.where(category_id: category.id, resource_type:"Question").each do|tag| question_s.add(tag.resource_id) end}
       		question_s = question_s.to_a
-      		@question =Question.where(id: question_s.to_a).page(params[:page]).per(10)
+      		@questions =Question.order_as_specified(id: question_s).page(params[:page]).per(10)
     	else
 			@questions = Question.all.page(params[:page]).per(10)
 		end
@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 			ChosenQuestion.create(user_id: current_user.id,question_id: @question.id)
 			redirect_to question_path(@question.id)
 		else
-
+			render 'new'
 		end
 	end
 

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
     #validations
-    validates :nickname, presence: true, length: 5..15, uniqueness: true, format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ }
+    validates :nickname, presence: true, length: 3..15, uniqueness: true, format: { without: /[!-\/\@\^\~\`\(\)\[\]\>\<\=]/ }
    	
     has_one :userparam, dependent: :destroy
 
